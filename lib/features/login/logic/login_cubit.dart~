@@ -32,7 +32,7 @@ class LoginCubit extends Cubit<LoginState> {
       );
     if (response.statusCode==200) {
       emit(LoginSuccess());
-
+     await Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen()), (route) => false);
     }
 
 
