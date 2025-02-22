@@ -122,8 +122,9 @@ class LoginScreen extends StatelessWidget {
                           if (!fromKey.currentState!.validate()) {
                             context.read<LoginCubit>().userLogin(
                                 controllerUsername.text,
-                                controllerPassword.text);
-                            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen()), (route) => false);
+                                controllerPassword.text,
+                                context);
+
                           }
                         },
                       ),

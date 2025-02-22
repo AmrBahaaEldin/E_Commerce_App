@@ -11,5 +11,6 @@ class AppImage{
   static const String bigLine="assets/svg/big_line.svg";
   ///////////////////////////////////////////////////////
 static const String messageIcon="assets/svg/icon/message.svg";
+static const String successOrder="assets/svg/icon/success_order.svg";
 
 }

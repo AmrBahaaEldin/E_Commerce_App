@@ -1,7 +1,9 @@
 import 'package:e_commerce_app/features/login/presentation/widget/login_screen.dart';
+import 'package:e_commerce_app/features/order/presentation/confirm_order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'features/order/presentation/order_success.dart';
 import 'features/payment/presentation/payment_method_screen.dart';
 import 'features/privacy/presentation/widget/privcy_screen.dart';
 
@@ -30,7 +32,7 @@ class ZaladaApp extends StatelessWidget {
 
 
         debugShowCheckedModeBanner: false,
-        home: PrivacyScreen(),
+        home: ConfirmOrderScreen(),
 
 
       ),
