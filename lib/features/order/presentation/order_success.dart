@@ -1,11 +1,8 @@
 import 'package:e_commerce_app/core/constants/app_image.dart';
 import 'package:e_commerce_app/core/widgets/custom_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../core/constants/app_color.dart';
 import '../../../core/widgets/custom_text_button.dart';
 import '../../login/presentation/widget/otp_screen.dart';
@@ -16,8 +13,8 @@ class OrderSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      height: 565.h,
+      padding: EdgeInsets.only(left: 20.w,right: 20.w,top: 10.h),
+
       width: 375.w,
       decoration: BoxDecoration(
           color: Colors.white,
@@ -27,28 +24,23 @@ class OrderSuccess extends StatelessWidget {
           )
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            height: 10.h,
-          ),
-          Center(
-            child: Container(
-              width: 66.66666.w,
-              height: 4.h,
-              decoration: BoxDecoration(
-                color: AppColor.buttonColor,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(11.r),
-                  topLeft: Radius.circular(11.r),
-                  bottomRight: Radius.circular(11.r),
-                  topRight: Radius.circular(11.r),
-                ),
+          Container(
+            width: 66.66666.w,
+            height: 4.h,
+            decoration: BoxDecoration(
+              color: AppColor.subFontColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(11.r),
+                topLeft: Radius.circular(11.r),
+                bottomRight: Radius.circular(11.r),
+                topRight: Radius.circular(11.r),
               ),
             ),
           ),
-          SvgPicture.asset(AppImage.successOrder),
-          SizedBox(height: 24.h,),
+          SizedBox(height: 12.h,),
+          SvgPicture.asset(AppImage.successOrder,height: 208.h,width: 199.w,),
           CustomText(text: "Order Successful!",
               fontSize: 24.sp,
               color: AppColor.fontColor,
@@ -58,7 +50,7 @@ class OrderSuccess extends StatelessWidget {
               fontSize: 14.sp,
               color: AppColor.fontColor,
               fontWeight: FontWeight.w400),
-          SizedBox(height: 14.h,),
+          SizedBox(height: 24.h,),
           GestureDetector(
               onTap: () {
                 Navigator.push(context,

@@ -19,7 +19,7 @@ class ZaladaService {
  Future<Response> postData({
   required String url,
    Map<String, dynamic>? queryParameters,
-  required Map<String, dynamic> data,
+   Map<String, dynamic>? data,
 }) async {
 
     return dio.post(url, queryParameters: queryParameters, data: data);
