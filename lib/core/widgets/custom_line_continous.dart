@@ -13,11 +13,13 @@ class CustomLineContinous extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SvgPicture.asset("assets/svg/line.svg"),
+        Expanded(child: SvgPicture.asset("assets/svg/line.svg")),
         SizedBox(
           width: 9.w,
+          height: 0.h,
         ),
         Text(
           "or continue with",
@@ -29,8 +31,9 @@ class CustomLineContinous extends StatelessWidget {
         ),
         SizedBox(
           width: 9.w,
+          height: 0.h,
         ),
-        SvgPicture.asset("assets/svg/line.svg")
+        Expanded(child: SvgPicture.asset("assets/svg/line.svg")),
       ],
     );
   }

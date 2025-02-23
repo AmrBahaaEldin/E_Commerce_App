@@ -69,9 +69,7 @@ class RegisterScreen extends StatelessWidget {
                 height: 24.h,
               ),
               CustomTextButton(label: "Register"),
-              SizedBox(
-                height: 24.h,
-              ),
+              SizedBox(height:  24.h),
               CustomLineContinous(),
               SizedBox(
                 height: 24.h,
