@@ -3,6 +3,7 @@ import 'package:e_commerce_app/features/home/presentation/widget/notification_sc
 import 'package:e_commerce_app/features/login/presentation/widget/login_screen.dart';
 import 'package:e_commerce_app/features/order/presentation/confirm_order_screen.dart';
 import 'package:e_commerce_app/features/register/presentation/widget/register_screen.dart';
+import 'package:e_commerce_app/features/search/presentation/search_screen.dart';
 import 'package:e_commerce_app/features/wishlist/presentation/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,15 +33,9 @@ class ZaladaApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: false,
       builder: (context, child) => MaterialApp(
-
-
-
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
-
-
+        home: PaymentMethodScreen(),
       ),
-      // Use builder only if you need to use library outside ScreenUtilInit context
 
 
     );

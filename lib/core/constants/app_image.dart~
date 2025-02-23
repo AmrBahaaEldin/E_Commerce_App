@@ -21,9 +21,5 @@ static const String homeProfile="assets/png/img_4.png";
   static const String apple="assets/png/apple.png";
   static const String creditCard="assets/png/creditcard.png";
   static const String discount="assets/png/discount_1.png";
-  ///////////////////////////////////////////////////////////
-  static const String card1="assets/png/card_1.png";
-  static const String card2="assets/png/card_2.png";
-  static const String card3="assets/png/card_3.png";
 
 }
