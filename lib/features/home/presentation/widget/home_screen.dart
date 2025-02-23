@@ -233,21 +233,22 @@ class HomeScreen extends StatelessWidget {
           // ✅ 4️⃣ شبكة المنتجات باستخدام SliverGrid
           SliverGrid(
             delegate: SliverChildBuilderDelegate(
-              (context, index) => Stack(
-                alignment: Alignment.bottomCenter,
-                clipBehavior: Clip.none,
-                children: [
+                  (context, index) =>
                   Container(
-                    height: 215.h,
-                    width: 159.w,
+
+
                     padding: EdgeInsets.symmetric(horizontal: 12.w),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16.r),
                       color: Colors.white,
                     ),
                     child: Column(
+
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Image(
+                          width: 131.w,
+                          height: 123.h,
                           image: AssetImage("assets/png/img_6.png"),
                         ),
                         SizedBox(
@@ -271,31 +272,15 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Positioned(
-                    bottom: -10.h,
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.r),
-                        color: Color(0xFFFF9C44),
-                      ),
-                      child: CustomText(
-                          text: "NEW ARRIVAL",
-                          fontSize: 10.sp,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700),
-                    ),
-                  )
-                ],
-              ),
-              childCount: 6,
+              childCount: 4,
             ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: .9,
-              crossAxisSpacing: 16.w, //horizontal
-              mainAxisSpacing: 24.h, //vertical
+                crossAxisCount: 2,
+                crossAxisSpacing: 24.h,           //vertical
+                mainAxisSpacing: 16.w,          //horizontal
+                childAspectRatio: 159.w/215.h      //(weidth/height)
+
+              //vertical
             ),
           ),
         ],

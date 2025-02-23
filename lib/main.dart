@@ -2,8 +2,8 @@ import 'package:e_commerce_app/features/home/presentation/widget/home_screen.dar
 import 'package:e_commerce_app/features/home/presentation/widget/notification_screen.dart';
 import 'package:e_commerce_app/features/login/presentation/widget/login_screen.dart';
 import 'package:e_commerce_app/features/order/presentation/confirm_order_screen.dart';
-import 'package:e_commerce_app/features/profile/presentation/widget/notification_screen.dart';
 import 'package:e_commerce_app/features/register/presentation/widget/register_screen.dart';
+import 'package:e_commerce_app/features/wishlist/presentation/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +36,7 @@ class ZaladaApp extends StatelessWidget {
 
 
         debugShowCheckedModeBanner: false,
-        home:  (),
+        home: HomeScreen(),
 
 
       ),
