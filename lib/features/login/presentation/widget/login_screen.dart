@@ -1,6 +1,4 @@
 import 'dart:ui';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,14 +11,14 @@ import '../../../../core/widgets/custom_sign_log.dart';
 import '../../../../core/widgets/custom_text.dart';
 import '../../../../core/widgets/custom_text_button.dart';
 import '../../../../core/widgets/custom_text_field.dart';
-import '../../../home/presentation/widget/home_screen.dart';
+
 import '../../../register/presentation/widget/register_screen.dart';
 import '../../logic/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+ const LoginScreen({super.key});
 
-  var fromKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +31,10 @@ class LoginScreen extends StatelessWidget {
             // TODO: implement listener
           },
           builder: (context, state) {
-            TextEditingController controllerUsername = TextEditingController();
-            TextEditingController controllerPassword = TextEditingController();
+            final  fromKey = GlobalKey<FormState>();
+            final TextEditingController controllerUsername = TextEditingController();
+            final TextEditingController controllerPassword = TextEditingController();
+
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -57,6 +57,7 @@ class LoginScreen extends StatelessWidget {
                           if (value!.isEmpty) {
                             return "Please enter your username";
                           }
+                          return null;
                         },
                         controller: controllerUsername,
                         keyboardType: TextInputType.emailAddress,
@@ -71,6 +72,7 @@ class LoginScreen extends StatelessWidget {
                           if (value!.isEmpty) {
                             return "Please enter your password";
                           }
+                          return null;
                         },
                         controller: controllerPassword,
                         keyboardType: TextInputType.visiblePassword,

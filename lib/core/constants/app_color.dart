@@ -11,6 +11,7 @@ class AppColor{
   static const importFontColor = Color(0xFF1B5EC9);
   static const iconColor = Color(0xff2D3C52);
   static const backgroundColor = Color(0xffF3F6FB);
+  static const backgroundIcon = Color(0x33FFFFFF);
 
 
 

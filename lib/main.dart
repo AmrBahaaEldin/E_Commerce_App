@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/features/home/presentation/widget/home_screen.dart';
 import 'package:e_commerce_app/features/login/presentation/widget/login_screen.dart';
 import 'package:e_commerce_app/features/order/presentation/confirm_order_screen.dart';
 import 'package:e_commerce_app/features/register/presentation/widget/register_screen.dart';
@@ -33,7 +34,7 @@ class ZaladaApp extends StatelessWidget {
 
 
         debugShowCheckedModeBanner: false,
-        home: RegisterScreen(),
+        home: HomeScreen(),
 
 
       ),

@@ -201,14 +201,11 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding:  EdgeInsets.only(left: 20.w),
-              child: CustomText(
-                  text: "Categories",
-                  fontSize: 18.sp,
-                  color: AppColor.fontColor,
-                  fontWeight: FontWeight.w600),
-            ),
+            child: CustomText(
+                text: "Categories",
+                fontSize: 18.sp,
+                color: AppColor.fontColor,
+                fontWeight: FontWeight.w600),
           ),
           SliverToBoxAdapter(child: SizedBox(height: 16.h),),
           SliverToBoxAdapter(

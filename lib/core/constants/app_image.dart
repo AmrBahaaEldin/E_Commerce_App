@@ -12,5 +12,10 @@ class AppImage{
   ///////////////////////////////////////////////////////
 static const String messageIcon="assets/svg/icon/message.svg";
 static const String successOrder="assets/svg/icon/success_order.svg";
+static const String headPhone="assets/png/headphone.png";
+static const String blueCard="assets/png/blueCard.png";
+static const String homeOffer="assets/png/home_offer.png";
+static const String homeProfile="assets/png/img_4.png";
+
 
 }
