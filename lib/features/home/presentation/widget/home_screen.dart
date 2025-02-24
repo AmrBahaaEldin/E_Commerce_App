@@ -18,78 +18,40 @@ class HomeScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomeCubit()..getDataHome(),
       child: BlocConsumer<HomeCubit, HomeState>(
-        listener: (context, state) {
-
-        },
+        listener: (context, state) {},
         builder: (context, state) {
-
           return Scaffold(
               backgroundColor: Colors.grey.shade300,
-              body:   ConditionalBuilder(condition: state is HomeSuccess, builder: (context) => CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Stack(
-                      alignment: Alignment.center,
-                      clipBehavior: Clip.none,
-                      children: [
-                        Container(
-                          height: 300.h,
-                          padding: EdgeInsets.only(
-                              top: 48.h, left: 20.w, right: 20.w),
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              stops: [0.0, 1.0],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xffFDA56C),
-                                Color(0xffFD6C8A),
-                              ],
+              body: ConditionalBuilder(
+                condition: state is! HomeLoading,
+                builder: (context) => CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Stack(
+                        alignment: Alignment.center,
+                        clipBehavior: Clip.none,
+                        children: [
+                          Container(
+                            height: 300.h,
+                            padding: EdgeInsets.only(
+                                top: 48.h, left: 20.w, right: 20.w),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                stops: [0.0, 1.0],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color(0xffFDA56C),
+                                  Color(0xffFD6C8A),
+                                ],
+                              ),
                             ),
-                          ),
-                          child: Column(
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 44.h,
-                                    width: 44.w,
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10.w, vertical: 10.h),
-                                    decoration: ShapeDecoration(
-                                        color: AppColor.backgroundIcon,
-                                        shape: CircleBorder()),
-                                    child: Icon(
-                                      Icons.location_on,
-                                      color: AppColor.backgroundColor,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 12.w,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      CustomText(
-                                          text: "Location",
-                                          fontSize: 12.sp,
-                                          color: AppColor.backgroundColor,
-                                          fontWeight: FontWeight.w400),
-                                      CustomText(
-                                          text: "Condong Catur",
-                                          fontSize: 14.sp,
-                                          color: AppColor.backgroundColor,
-                                          fontWeight: FontWeight.w600),
-                                    ],
-                                  ),
-                                  Spacer(),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen(),));
-                                    },
-                                    child: Container(
+                            child: Column(
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
                                       height: 44.h,
                                       width: 44.w,
                                       padding: EdgeInsets.symmetric(
@@ -97,241 +59,318 @@ class HomeScreen extends StatelessWidget {
                                       decoration: ShapeDecoration(
                                           color: AppColor.backgroundIcon,
                                           shape: CircleBorder()),
-                                      child: Image(
-                                        image: AssetImage(
-                                            "assets/svg/icon/img.png"),
+                                      child: Icon(
+                                        Icons.location_on,
+                                        color: AppColor.backgroundColor,
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 12.w,
-                                  ),
-                                  Container(
-                                    decoration: ShapeDecoration(
-                                        color: AppColor.backgroundIcon,
-                                        shape: CircleBorder()),
-                                    child: Image.asset(
-                                      AppImage.homeProfile,
-                                      width: 44.h,
-                                      height: 44.h,
+                                    SizedBox(
+                                      width: 12.w,
                                     ),
-                                  ), //profile
-                                ],
-                              ),
-                              CustomText(
-                                  text: "Find best device for your setup!",
-                                  fontSize: 32.sp,
-                                  color: AppColor.backgroundColor,
-                                  fontWeight: FontWeight.w600),
-                            ],
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        CustomText(
+                                            text: "Location",
+                                            fontSize: 12.sp,
+                                            color: AppColor.backgroundColor,
+                                            fontWeight: FontWeight.w400),
+                                        CustomText(
+                                            text: "Condong Catur",
+                                            fontSize: 14.sp,
+                                            color: AppColor.backgroundColor,
+                                            fontWeight: FontWeight.w600),
+                                      ],
+                                    ),
+                                    Spacer(),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  NotificationScreen(),
+                                            ));
+                                      },
+                                      child: Container(
+                                        height: 44.h,
+                                        width: 44.w,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10.w, vertical: 10.h),
+                                        decoration: ShapeDecoration(
+                                            color: AppColor.backgroundIcon,
+                                            shape: CircleBorder()),
+                                        child: Image(
+                                          image: AssetImage(
+                                              "assets/svg/icon/img.png"),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 12.w,
+                                    ),
+                                    Container(
+                                      decoration: ShapeDecoration(
+                                          color: AppColor.backgroundIcon,
+                                          shape: CircleBorder()),
+                                      child: Image.asset(
+                                        AppImage.homeProfile,
+                                        width: 44.h,
+                                        height: 44.h,
+                                      ),
+                                    ), //profile
+                                  ],
+                                ),
+                                CustomText(
+                                    text: "Find best device for your setup!",
+                                    fontSize: 32.sp,
+                                    color: AppColor.backgroundColor,
+                                    fontWeight: FontWeight.w600),
+                              ],
+                            ),
                           ),
-                        ),
-                        Positioned(
-                          bottom: -54.h,
-                          child: Image(
-                            image: AssetImage(AppImage.homeOffer),
-                            height: 178.h,
+                          Positioned(
+                            bottom: -54.h,
+                            child: Image(
+                              image: AssetImage(AppImage.homeOffer),
+                              height: 178.h,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  ///////////////////////////////////////
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 50.h,
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomText(
-                            text: "Hot deals🔥",
-                            fontSize: 18.sp,
-                            color: AppColor.fontColor,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          Image(
-                            image: AssetImage("assets/png/img_5.png"),
-                            width: 100.h,
-                          )
                         ],
                       ),
                     ),
-                  ),
-                  ////////////////////////////////////
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 20.h,
-                    ),
-                  ),
-                  // ✅ 3️⃣ قائمة أفقية للمنتجات
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 20.w),
+                    ///////////////////////////////////////
+                    SliverToBoxAdapter(
                       child: SizedBox(
-                        height: 215.h,
-                        child: ListView.separated(
-
-                          scrollDirection: Axis.horizontal,
-                          itemCount: HomeCubit.get(context).homeModel.length,
-                          separatorBuilder: (context, index) =>
-                              SizedBox(width: 16.w),
-                          itemBuilder: (context, index) {
-
-                            return Container(
-                              width: 159.w,
-
-                              padding: EdgeInsets.symmetric(horizontal: 12.w),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16.r),
-                                color: Colors.white,
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image(image: NetworkImage(HomeCubit.get(context).homeModel[index].image),
-                                    height: 100.h,
-                                  ),
-                                  SizedBox(
-                                    height: 4.h,
-                                  ),
-                                  CustomText(
-                                    text:
-                                    HomeCubit.get(context).homeModel[index].title,
-                                    fontSize: 14.sp,
-
-                                    color: AppColor.fontColor,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  SizedBox(
-                                    height: 4.h,
-                                  ),
-                                  CustomText(
-                                    text:  "\$ ${HomeCubit.get(context).homeModel[index].price.toString()}",
-                                    fontSize: 16.sp,
-                                    color: AppColor.importFontColor,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
+                        height: 50.h,
                       ),
                     ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 38.h,
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 20.w),
-                      child: CustomText(
-                          text: "Categories",
-                          fontSize: 18.sp,
-                          color: AppColor.fontColor,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: SizedBox(height: 16.h),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 20.w),
-                      child: Row(
-                        children: [
-                          Image(
-                            image: AssetImage("assets/png/img_7.png"),
-                            width: 80.w,
-                            height: 40.h,
-                          ),
-                          SizedBox(
-                            width: 12.w,
-                          ),
-                          Image(
-                            image: AssetImage("assets/png/img_8.png"),
-                            width: 114.w,
-                            height: 40.h,
-                          ),
-                          SizedBox(
-                            width: 12.w,
-                          ),
-                          Image(
-                            image: AssetImage("assets/png/img_9.png"),
-                            width: 114.w,
-                            height: 40.h,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 22.h,
-                    ),
-                  ),
-                  // ✅ 4️⃣ شبكة المنتجات باستخدام SliverGrid
-                  SliverGrid(
-                    delegate: SliverChildBuilderDelegate(
-                          (context, index) => Container(
-                        margin: EdgeInsets.symmetric(horizontal: 20.w),
-                        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.r),
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Image(
-                              width: 131.w,
-                              height: 123.h,
-                              image: NetworkImage(HomeCubit.get(context).homeModel[index].image),
-                            ),
-                            SizedBox(
-                              height: 4.h,
-                            ),
                             CustomText(
-                              text: HomeCubit.get(context).homeModel[index].title,
-                              fontSize: 14.sp,
+                              text: "Hot deals🔥",
+                              fontSize: 18.sp,
                               color: AppColor.fontColor,
                               fontWeight: FontWeight.w600,
                             ),
-                            SizedBox(
-                              height: 4.h,
+                            Image(
+                              image: AssetImage("assets/png/img_5.png"),
+                              width: 100.h,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    ////////////////////////////////////
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 20.h,
+                      ),
+                    ),
+                    // ✅ 3️⃣ قائمة أفقية للمنتجات
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 20.w),
+                        child: SizedBox(
+                          height: 215.h,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: HomeCubit.get(context).homeModel.length,
+                            separatorBuilder: (context, index) =>
+                                SizedBox(width: 16.w),
+                            itemBuilder: (context, index) {
+                              return Container(
+                                width: 159.w,
+                                padding: EdgeInsets.symmetric(horizontal: 12.w),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16.r),
+                                  color: Colors.white,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image(
+                                      image: NetworkImage(HomeCubit.get(context)
+                                          .homeModel[index]
+                                          .image),
+                                      height: 100.h,
+                                    ),
+                                    SizedBox(
+                                      height: 4.h,
+                                    ),
+                                    CustomText(
+                                      text: HomeCubit.get(context)
+                                          .homeModel[index]
+                                          .title,
+                                      fontSize: 14.sp,
+                                      color: AppColor.fontColor,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    SizedBox(
+                                      height: 4.h,
+                                    ),
+                                    CustomText(
+                                      text:
+                                          "\$ ${HomeCubit.get(context).homeModel[index].price.toString()}",
+                                      fontSize: 16.sp,
+                                      color: AppColor.importFontColor,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 38.h,
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 20.w),
+                        child: CustomText(
+                            text: "Categories",
+                            fontSize: 18.sp,
+                            color: AppColor.fontColor,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: SizedBox(height: 16.h),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 20.w),
+                        child: Row(
+                          children: [
+                            Image(
+                              image: AssetImage("assets/png/img_7.png"),
+                              width: 80.w,
+                              height: 40.h,
                             ),
-                            CustomText(
-                              text: "\$ ${HomeCubit.get(context).homeModel[index].price.toString()}",
-                              fontSize: 16.sp,
-                              color: AppColor.importFontColor,
-                              fontWeight: FontWeight.w700,
+                            SizedBox(
+                              width: 12.w,
+                            ),
+                            Image(
+                              image: AssetImage("assets/png/img_8.png"),
+                              width: 114.w,
+                              height: 40.h,
+                            ),
+                            SizedBox(
+                              width: 12.w,
+                            ),
+                            Image(
+                              image: AssetImage("assets/png/img_9.png"),
+                              width: 114.w,
+                              height: 40.h,
                             ),
                           ],
                         ),
                       ),
-                      childCount: HomeCubit.get(context).homeModel.length,
                     ),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 14.h, //vertical
-                        mainAxisSpacing: 16.w, //horizontal
-                        childAspectRatio: 159.w / 215.h //(width/height)
-
-                      //vertical
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 22.h,
+                      ),
                     ),
-                  ),
-                ],
-              ),  fallback: (context) => Center(child: CircularProgressIndicator()),)
+                    // ✅ 4️⃣ شبكة المنتجات باستخدام SliverGrid
+                    SliverGrid(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) => Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20.w),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.w, vertical: 12.h),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16.r),
+                            color: Colors.white,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image(
+                                width: 131.w,
+                                height: 123.h,
+                                image: NetworkImage(HomeCubit.get(context)
+                                    .homeModel[index]
+                                    .image),
+                              ),
+                              SizedBox(
+                                height: 4.h,
+                              ),
+                              CustomText(
+                                text: HomeCubit.get(context)
+                                    .homeModel[index]
+                                    .title,
+                                fontSize: 14.sp,
+                                color: AppColor.fontColor,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              SizedBox(
+                                height: 4.h,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  CustomText(
+                                    text:
+                                        "\$ ${HomeCubit.get(context).homeModel[index].price.toString()}",
+                                    fontSize: 16.sp,
+                                    color: AppColor.importFontColor,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                  Container(
+                                    height: 30.h,
+                                    width: 30.w,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 5.w, vertical: 5.h),
+                                    decoration: ShapeDecoration(
+                                        color: AppColor.subFontColor,
+                                        shape: CircleBorder()),
+                                    child: IconButton(
+                                      padding: EdgeInsets.zero,
+                                      onPressed: () {
+                                        HomeCubit.get(context).changeFav(index);
+                                      },
+                                      icon: Icon(
+                                        size: 20.sp,
+                                        HomeCubit.get(context).homeModel[index].isFav
+                                            ? Icons.favorite_outlined
+                                            : Icons.favorite_border_outlined,
+                                        color: AppColor.fontSelectColor,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        childCount: HomeCubit.get(context).homeModel.length,
+                      ),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 14.h, //vertical
+                          mainAxisSpacing: 16.w, //horizontal
+                          childAspectRatio: 159.w / 215.h //(width/height)
 
-          );
+                          //vertical
+                          ),
+                    ),
+                  ],
+                ),
+                fallback: (context) =>
+                    Center(child: CircularProgressIndicator()),
+              ));
         },
       ),
     );

@@ -7,6 +7,7 @@ abstract class HomeState {}
 
 final class HomeInitial extends HomeState {}
 final class HomeLoading extends HomeState {}
+final class HomeISFav extends HomeState {}
 final class HomeSuccess extends HomeState {
   final List<HomeModel> homeModel;
   HomeSuccess(this.homeModel);

@@ -7,6 +7,8 @@ import 'package:e_commerce_app/core/network/new_end_points.dart';
 import 'package:e_commerce_app/features/home/data/home_model.dart';
 import 'package:e_commerce_app/features/home/logic/home_cubit.dart';
 import 'package:e_commerce_app/features/home/logic/home_state.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -16,6 +18,7 @@ class HomeCubit extends Cubit<HomeState> {
   static HomeCubit get(context) => BlocProvider.of(context);
 
   List<HomeModel> homeModel = [];
+  Set<int> favoriteProducts = {};
 
   Future<void> getDataHome() async {
     try {
@@ -45,4 +48,21 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeError( e.toString()));
     }
   }
+
+
+  void changeFav(int index) {
+    homeModel[index].isFav = !homeModel[index].isFav;
+    emit(HomeISFav());
+  }
+
+  List<HomeModel> getFavorites() {
+    return homeModel.where((product) => product.isFav).toList();
+  }
+
+
+
+
+
 }
+
+

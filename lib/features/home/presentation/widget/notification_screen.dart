@@ -13,10 +13,13 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
                   height: 44.h,
                   width: 44.h,
                   padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
@@ -33,9 +36,9 @@ class NotificationScreen extends StatelessWidget {
                     Icons.arrow_back_outlined,
                     size: 20.sp,
                   )),
-
-            ],
+            ),
           ),
+
 
         ),
       body: CustomScrollView(
