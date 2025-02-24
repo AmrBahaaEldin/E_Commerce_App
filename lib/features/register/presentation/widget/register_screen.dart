@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:e_commerce_app/features/register/logic/register_cubit.dart';
 import 'package:e_commerce_app/features/register/logic/register_state.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
                  Fluttertoast.showToast(
                      msg: state.registerModel.message,
                      toastLength: Toast.LENGTH_SHORT,
-                     gravity: ToastGravity.CENTER,
+                     gravity: ToastGravity.BOTTOM,
                      timeInSecForIosWeb: 5,
                      backgroundColor: Colors.green,
                      textColor: Colors.white,
@@ -43,7 +44,7 @@ class RegisterScreen extends StatelessWidget {
                 Fluttertoast.showToast(
                     msg: state.registerModel.message,
                     toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.CENTER,
+                    gravity: ToastGravity.BOTTOM,
                     timeInSecForIosWeb: 5,
                     backgroundColor: Colors.red,
                     textColor: Colors.white,
@@ -162,7 +163,7 @@ class RegisterScreen extends StatelessWidget {
                       SizedBox(
                         height: 24.h,
                       ),
-                      CustomTextButton(label: "Register", onTap: () {
+                      ConditionalBuilder(condition: state is ! RegisterLoading, builder: (context) =>CustomTextButton(label: "Register", onTap: () {
                         final registerCubit = RegisterCubit.get(context);
                         if (registerCubit.formKey.currentState!.validate()) {
                           RegisterCubit.get(context)
@@ -172,8 +173,10 @@ class RegisterScreen extends StatelessWidget {
                             registerCubit.passwordController.text.trim(),
                             registerCubit.phoneController.text.trim(),
                           );
+
                         }
-                      },),
+                      },), fallback:(context) =>  Center(child: CircularProgressIndicator())),
+
                       SizedBox(height: 24.h),
                       CustomLineContinous(),
                       SizedBox(
