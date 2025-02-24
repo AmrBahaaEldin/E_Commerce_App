@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:e_commerce_app/core/network/new_api.dart';
+import 'package:e_commerce_app/core/network/new_end_points.dart';
+import 'package:e_commerce_app/features/login/data/login_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,28 +17,29 @@ part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
+
   static LoginCubit get(context) => BlocProvider.of(context);
+ late LoginModel loginModel;
  bool isHide=false;
   void setHide(){
    isHide=!isHide;
    emit(LoginHidePassword());
  }
-  Future <void> userLogin(String userName, String password,context)async{
+  GlobalKey<FormState> fromKey = GlobalKey<FormState>();
+   TextEditingController controllerEmail = TextEditingController();
+   TextEditingController controllerPassword = TextEditingController();
+
+  Future <void> userLogin(String email, String password)async{
    emit(LoginLoading());
     try{
 
-    Response response= await ZaladaService(dio: Dio()).postData(url: Endpoints.baseUrl , data:
-        {
-          "username": userName,
-          "password": password,
-        }
-      );
+    Response response= await NewApi.postData(url:NewEndPoints.loginEndPoint_v2 , data:
+     {'email': email, 'password': password},
+    );
     if (response.statusCode==200) {
-      emit(LoginSuccess());
-
+    loginModel= LoginModel.fromJson(response.data);
+      emit(LoginSuccess(loginModel: loginModel));
     }
-
-
     }
     catch(e){
 

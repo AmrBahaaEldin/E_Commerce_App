@@ -1,4 +1,6 @@
 import 'package:e_commerce_app/core/constants/bloc_observer.dart';
+import 'package:e_commerce_app/core/network/dio_helper.dart';
+import 'package:e_commerce_app/core/network/new_api.dart';
 import 'package:e_commerce_app/features/home/presentation/widget/home_screen.dart';
 import 'package:e_commerce_app/features/home/presentation/widget/notification_screen.dart';
 import 'package:e_commerce_app/features/login/presentation/widget/login_screen.dart';
@@ -17,6 +19,8 @@ import 'features/privacy/presentation/widget/privcy_screen.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
+  DioHelper.init();
+  NewApi.init();
   runApp(const ZaladaApp());
 }
 

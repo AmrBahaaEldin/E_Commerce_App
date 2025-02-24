@@ -1,63 +1,30 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce_app/core/network/endpoints.dart';
-
+import 'package:e_commerce_app/core/network/new_end_points.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-// class ZaladaService {
-//     Dio dio;
-//     ZaladaService({required this.dio});
-//
-//   Future<Response> getData({
-//    required String url,
-//    required Map<String, dynamic> queryParameters,
-//
-//  }) async {
-//
-//    return dio.post(url, queryParameters: queryParameters);
-//
-//  }
-//
-//  Future<Response> postData({
-//   required String url,
-//    Map<String, dynamic>? queryParameters,
-//    Map<String, dynamic>? data,
-// }) async {
-//
-//     return dio.post(url, queryParameters: queryParameters, data: data);
-//
-//   }
-// }
-
-// import 'dart:io';
-//
-// import 'package:dio/dio.dart';
-// import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-//
-// import 'endpoints.dart';
-//
-// /// A helper class for making HTTP requests using Dio.
- class DioHelper {
-   static late Dio dio;
+class NewApi {
+  static late Dio dio;
   /// Initialize Dio with base options and add interceptors.
- static void init() {
-   dio = Dio(
-       BaseOptions(
-       baseUrl: Endpoints.baseUrl,
-       headers: {
-           'Content-Type': 'application/json',
+  static void init() {
+    dio = Dio(
+      BaseOptions(
+        baseUrl: NewEndPoints.baseUrl_v2,
+        headers: {
+          'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
-           'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
         },
       ),
-   );
-     dio.interceptors.add(PrettyDioLogger(
-       requestBody: true,
+    );
+    dio.interceptors.add(PrettyDioLogger(
+      requestBody: true,
       error: true,
-       responseBody: true,
-       requestHeader: true,
+      responseBody: true,
+      requestHeader: true,
       responseHeader: true,
     ),);
- }
+  }
 
   /// Makes a GET request to the specified URL.
   ///
@@ -67,23 +34,23 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
   /// - [onReceiveProgress]: Callback to listen for the progress of receiving response.
   /// - [token]: Optional authorization token.
   ///
-   /// Returns a [Future] with a [Response] object.
+  /// Returns a [Future] with a [Response] object.
   static Future<Response> getData({
-     required String url,
+    required String url,
     Map<String, dynamic>? queryParameters,
     ProgressCallback? onReceiveProgress,
-     String? token,
-   }) async {
-     try {
+    String? token,
+  }) async {
+    try {
       dio.options.headers = {
-         'Authorization': 'Bearer ${token ?? ''}',
-       };
-       final Response response = await dio.get(
-         url,
+        'Authorization': 'Bearer ${token ?? ''}',
+      };
+      final Response response = await dio.get(
+        url,
         queryParameters: queryParameters,
         onReceiveProgress: onReceiveProgress,
       );
-       return response;
+      return response;
     } catch (e) {
       // Handle any errors and rethrow them for higher-level error handling.
       rethrow;
@@ -136,9 +103,9 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
   /// Returns a [Future] with a [Response] object.
   static Future<Response> postData({
     required String url,
-   required Map<String, dynamic> data,
+    required Map<String, dynamic> data,
     String? token,
-   Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? queryParameters,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
