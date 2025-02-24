@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/constants/bloc_observer.dart';
 import 'package:e_commerce_app/features/home/presentation/widget/home_screen.dart';
 import 'package:e_commerce_app/features/home/presentation/widget/notification_screen.dart';
 import 'package:e_commerce_app/features/login/presentation/widget/login_screen.dart';
@@ -15,7 +16,7 @@ import 'features/privacy/presentation/widget/privcy_screen.dart';
 
 
 void main() {
-
+  Bloc.observer = MyBlocObserver();
   runApp(const ZaladaApp());
 }
 
@@ -34,7 +35,7 @@ class ZaladaApp extends StatelessWidget {
       splitScreenMode: false,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: PaymentMethodScreen(),
+        home: LoginScreen(),
       ),
 
 
