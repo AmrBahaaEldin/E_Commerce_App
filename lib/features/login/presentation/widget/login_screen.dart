@@ -82,14 +82,14 @@ class LoginScreen extends StatelessWidget {
                       CustomTextField(
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Please enter your username";
+                            return "Please enter your Email";
                           }
                           return null;
                         },
                         controller: context.read<LoginCubit>().controllerEmail,
                         keyboardType: TextInputType.emailAddress,
-                        hintText: "username",
-                        labelText: "Username",
+                        hintText: "Email",
+                        labelText: "Email Address",
                       ),
                       SizedBox(
                         height: 16.h,
@@ -195,11 +195,11 @@ class LoginScreen extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              // Navigator.pushReplacement(context,
-                              //     MaterialPageRoute(
-                              //   builder: (context) {
-                              //     return RegisterScreen();},
-                              // ));
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(
+                                builder: (context) {
+                                  return RegisterScreen();},
+                              ));
                             },
                             child: CustomText(
                               text: "Register",
