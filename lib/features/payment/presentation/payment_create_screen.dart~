@@ -102,95 +102,97 @@ DateTime? _selectedDate;
                         topRight: Radius.circular(24.r)),
                     color: Colors.white,
                   ),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 126.h,),
-                      CustomTextField(
-                        validator: (  String? value) {
-                          if(value!.isEmpty){
-                            return "please enter name";
-                          }
-                          return null;
-                        },
-                         onChanged: (value){
-                           setState(() {
-                             cardNameControl.text=value;
-                           });
-                         }  ,
-                          labelText: "Card Name",
-                          keyboardType: TextInputType.name,
-                          controller: cardNameControl),
-                      SizedBox(height: 16.h,),
-                      CustomTextField(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 126.h,),
+                        CustomTextField(
                           validator: (  String? value) {
                             if(value!.isEmpty){
-                              return "please enter numberCard";
+                              return "please enter name";
                             }
                             return null;
                           },
-                        onChanged: (value) {
-                          setState(() {
-                            cardNumberControl.text=value;
-                          });
+                           onChanged: (value){
+                             setState(() {
+                               cardNameControl.text=value;
+                             });
+                           }  ,
+                            labelText: "Card Name",
+                            keyboardType: TextInputType.name,
+                            controller: cardNameControl),
+                        SizedBox(height: 16.h,),
+                        CustomTextField(
+                            validator: (  String? value) {
+                              if(value!.isEmpty){
+                                return "please enter numberCard";
+                              }
+                              return null;
+                            },
+                          onChanged: (value) {
+                            setState(() {
+                              cardNumberControl.text=value;
+                            });
 
-                          print(cardNumberControl);
-                        },
-                          labelText: "Card Number",
-                          keyboardType: TextInputType.number,
-                          controller: cardNumberControl),
-                      SizedBox(height: 16.h,),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomTextField(
-                              validator: (  String? value) {
-                                if(value!.isEmpty){
-                                  return "please enter ExpiryDate";
-                                }
-                                return null;
-                              },
-                              isRead: true,
-                              onTap: () async {
-                                DateTime? pickedDate = await showDatePicker(
-                                  context: context,
-                                  initialDate: _selectedDate ?? DateTime.now(),
-                                  firstDate: DateTime(2000),
-                                  lastDate: DateTime(2100),
-                                );
+                            print(cardNumberControl);
+                          },
+                            labelText: "Card Number",
+                            keyboardType: TextInputType.number,
+                            controller: cardNumberControl),
+                        SizedBox(height: 16.h,),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: CustomTextField(
+                                validator: (  String? value) {
+                                  if(value!.isEmpty){
+                                    return "please enter ExpiryDate";
+                                  }
+                                  return null;
+                                },
+                                isRead: true,
+                                onTap: () async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                    context: context,
+                                    initialDate: _selectedDate ?? DateTime.now(),
+                                    firstDate: DateTime(2000),
+                                    lastDate: DateTime(2100),
+                                  );
 
-                                if (pickedDate != null) {
-                                  setState(() {
-                                    _selectedDate = pickedDate;
-                                    cardDataControl.text = DateFormat('dd/MM').format(pickedDate);
-                                  });
-                                }
-                              },
-                              suffixIcon: Icon(Icons.calendar_today_outlined),
-                              labelText: "Expiry Date",
-                              keyboardType: TextInputType.name,
-                              controller: cardDataControl,),
-                          ),
-                          SizedBox(width: 16.w,),
-                          Expanded(child: CustomTextField(
-                              validator: (  String? value) {
-                                if(value!.isEmpty){
-                                  return "please enter cvv";
-                                }
-                                return null;
-                              },
-                              labelText: "cvv", keyboardType: TextInputType.number, controller: cardCvvControl))
-                        ],
-                      ),
-                      SizedBox(height: 89.h,),
-                      CustomTextButton(label:"Add Payment",onTap: () {
-                        if(globalKey.currentState!.validate()){
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PaymentMethodScreen(
+                                  if (pickedDate != null) {
+                                    setState(() {
+                                      _selectedDate = pickedDate;
+                                      cardDataControl.text = DateFormat('dd/MM').format(pickedDate);
+                                    });
+                                  }
+                                },
+                                suffixIcon: Icon(Icons.calendar_today_outlined),
+                                labelText: "Expiry Date",
+                                keyboardType: TextInputType.name,
+                                controller: cardDataControl,),
+                            ),
+                            SizedBox(width: 16.w,),
+                            Expanded(child: CustomTextField(
+                                validator: (  String? value) {
+                                  if(value!.isEmpty){
+                                    return "please enter cvv";
+                                  }
+                                  return null;
+                                },
+                                labelText: "cvv", keyboardType: TextInputType.number, controller: cardCvvControl))
+                          ],
+                        ),
+                        SizedBox(height: 89.h,),
+                        CustomTextButton(label:"Add Payment",onTap: () {
+                          if(globalKey.currentState!.validate()){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PaymentMethodScreen(
 
-                          ),));
-                        }
-                      }, ),
+                            ),));
+                          }
+                        }, ),
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],

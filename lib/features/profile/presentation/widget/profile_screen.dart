@@ -1,3 +1,6 @@
+import 'package:e_commerce_app/features/payment/presentation/payment_method_screen.dart';
+import 'package:e_commerce_app/features/privacy/presentation/widget/privcy_screen.dart';
+import 'package:e_commerce_app/features/profile/presentation/widget/edit_profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -39,30 +42,25 @@ class ProfileScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                              height: 44.h,
-                              width: 44.h,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 12.h, horizontal: 12.w),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(34.r),
-                                    bottomRight: Radius.circular(34.r),
-                                    topLeft: Radius.circular(34.r),
-                                    topRight: Radius.circular(34.r),
-                                  ),
-                                  border: Border.all(
-                                      color: AppColor.fontLabelColor,
-                                      width: 1.w)),
-                              child: Icon(
-                                Icons.arrow_back_outlined,
-                                size: 20.sp,
-                              )),
-                        ),
+                        Container(
+                            height: 44.h,
+                            width: 44.h,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 12.h, horizontal: 12.w),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(34.r),
+                                  bottomRight: Radius.circular(34.r),
+                                  topLeft: Radius.circular(34.r),
+                                  topRight: Radius.circular(34.r),
+                                ),
+                                border: Border.all(
+                                    color: AppColor.fontLabelColor,
+                                    width: 1.w)),
+                            child: Icon(
+                              Icons.arrow_back_outlined,
+                              size: 20.sp,
+                            )),
                         CustomText(
                           text: "Profile",
                           color: AppColor.fontColor,
@@ -71,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pop(context);
+                           Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfileScreen(),));
                           },
                           child: Container(
                               height: 44.h,
@@ -172,7 +170,7 @@ class ProfileScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: 20.w),
                     child: CustomText(
-                        text: "Account Settings",
+                        text: "General",
                         fontSize: 14.sp,
                         color: AppColor.subFontColor,
                         fontWeight: FontWeight.w600),
@@ -258,7 +256,11 @@ class CustomItemAccount extends StatelessWidget {
           ),
           Spacer(),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                  return accountSettingsNav[index];
+              }));
+            },
             icon: accountSettings[index].iconTrailing!,
           )
         ],
@@ -300,7 +302,12 @@ class CustomItemGeneral extends StatelessWidget {
           ),
           Spacer(),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return generalNav[index];
+
+              }));
+            },
             icon: generalModel[index].iconTrailing!,
           )
         ],
@@ -348,3 +355,18 @@ class CustomItemLeave extends StatelessWidget {
     );
   }
 }
+
+List<Widget>accountSettingsNav = [
+  ProfileScreen(),
+  PaymentMethodScreen(),
+  EditProfileScreen(),
+  EditProfileScreen(),
+
+];
+List<Widget>generalNav = [
+  ProfileScreen(),
+  PrivacyScreen(),
+  EditProfileScreen(),
+
+
+];

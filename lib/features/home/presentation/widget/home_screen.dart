@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:e_commerce_app/core/constants/app_color.dart';
 import 'package:e_commerce_app/core/constants/app_image.dart';
@@ -296,13 +297,15 @@ class HomeScreen extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image(
-                                width: 131.w,
+                              // width: 131.w,
+                              // height: 123.h,
+                              // NetworkImage(HomeCubit.get(context)
+                              //     .homeModel[index]
+                              //     .image),
+                              CachedNetworkImage(imageUrl: HomeCubit.get(context).homeModel[index].image,placeholder: (context, url) => CircularProgressIndicator(),
+                                errorWidget: (context, url, error) => Icon(Icons.error),
                                 height: 123.h,
-                                image: NetworkImage(HomeCubit.get(context)
-                                    .homeModel[index]
-                                    .image),
-                              ),
+                              width: 131.w,),
                               SizedBox(
                                 height: 4.h,
                               ),

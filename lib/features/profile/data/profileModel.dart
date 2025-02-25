@@ -30,7 +30,8 @@ List<ProfileModel> accountSettings = [
       Icons.location_on,
       color:AppColor.iconColor,
     ),
-    iconTrailing: const Icon(
+    iconTrailing : Icon(
+
       Icons.arrow_forward_ios_outlined,
       color:AppColor.iconColor,
     ),

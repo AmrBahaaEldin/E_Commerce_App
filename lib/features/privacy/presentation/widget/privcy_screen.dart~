@@ -12,6 +12,7 @@ class PrivacyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -49,7 +50,8 @@ class PrivacyScreen extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(child: SizedBox(height: 16.h,)),
-            SliverList.separated(itemBuilder: (context, index) =>Column(
+            SliverList.separated(itemCount: privacyList.length,
+              itemBuilder: (context, index) =>Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(
