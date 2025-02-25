@@ -3,8 +3,10 @@ import 'package:e_commerce_app/core/network/dio_helper.dart';
 import 'package:e_commerce_app/core/network/new_api.dart';
 import 'package:e_commerce_app/features/home/presentation/widget/home_screen.dart';
 import 'package:e_commerce_app/features/home/presentation/widget/notification_screen.dart';
+import 'package:e_commerce_app/features/layout/presentation/layout_screen.dart';
 import 'package:e_commerce_app/features/login/presentation/widget/login_screen.dart';
 import 'package:e_commerce_app/features/order/presentation/confirm_order_screen.dart';
+import 'package:e_commerce_app/features/payment/presentation/widget/payment_create_screen.dart';
 import 'package:e_commerce_app/features/register/presentation/widget/register_screen.dart';
 import 'package:e_commerce_app/features/search/presentation/search_screen.dart';
 import 'package:e_commerce_app/features/wishlist/presentation/wishlist_screen.dart';
@@ -37,7 +39,7 @@ class ZaladaApp extends StatelessWidget {
       splitScreenMode: false,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        home: PaymentCreateScreen(),
       ),
 
 

@@ -11,14 +11,24 @@ class CustomTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final Widget? suffixIcon;
   final String? hintText;
- final String? Function(String?)? validator;
+  final String? Function(String?)? validator;
   final TextEditingController controller;
+  final void Function(String)? onChanged;
+  final void Function()? onTap;
+  final bool isRead;
 
-
-  const CustomTextField({
-
-    super.key, required this.labelText, required this.keyboardType, this.suffixIcon, this.hintText, required this.controller,this.isHidden=false, this. validator,
-  });
+  const CustomTextField(
+      {super.key,
+      required this.labelText,
+      required this.keyboardType,
+      this.suffixIcon,
+      this.hintText,
+      required this.controller,
+      this.isHidden = false,
+      this.validator,
+      this.onChanged,
+      this.onTap,
+      this.isRead=false});
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +46,18 @@ class CustomTextField extends StatelessWidget {
           height: 8.h,
         ),
         TextFormField(
+          readOnly: isRead,
+          onTap: onTap,
           obscureText: isHidden,
-          validator:validator ,
-
+          validator: validator,
+          onChanged: onChanged,
           controller: controller,
           keyboardType: keyboardType,
           decoration: InputDecoration(
-            suffixIcon:suffixIcon ,
+            suffixIcon: suffixIcon,
             hintText: hintText,
             contentPadding:
-            EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+                EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
             border: OutlineInputBorder(
               borderSide: BorderSide(width: 1.w, color: Colors.grey),
               borderRadius: BorderRadius.only(

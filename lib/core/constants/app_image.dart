@@ -25,5 +25,7 @@ static const String homeProfile="assets/png/img_4.png";
   static const String card1="assets/png/card_1.png";
   static const String card2="assets/png/card_2.png";
   static const String card3="assets/png/card_3.png";
-
+///////////////////////////////////////////////////////
+static const String createPayment="assets/png/create payment.png";
+static const String logoMasterCard="assets/png/logomastercard .png";
 }
