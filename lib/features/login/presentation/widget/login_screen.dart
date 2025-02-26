@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:e_commerce_app/features/home/presentation/widget/home_screen.dart';
+import 'package:e_commerce_app/features/layout/presentation/layout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,9 +20,7 @@ import '../../../register/presentation/widget/register_screen.dart';
 import '../../logic/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
- const LoginScreen({super.key});
-
-
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +31,8 @@ class LoginScreen extends StatelessWidget {
         body: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
             if (state is LoginSuccess) {
-              if(state.loginModel.status){
-
-                Fluttertoast.showToast (
+              if (state.loginModel.status) {
+                Fluttertoast.showToast(
                     msg: state.loginModel.message,
                     toastLength: Toast.LENGTH_LONG,
                     gravity: ToastGravity.BOTTOM,
@@ -42,13 +40,12 @@ class LoginScreen extends StatelessWidget {
                     backgroundColor: Colors.green,
                     textColor: Colors.white,
                     fontSize: 16.0);
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return HomeScreen();
-            },));
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => LayoutScreen()),
+                    (route) => false);
 
-
-              }
-              else if (state.loginModel.status==false) {
+              } else if (state.loginModel.status == false) {
                 Fluttertoast.showToast(
                     msg: state.loginModel.message,
                     toastLength: Toast.LENGTH_LONG,
@@ -56,16 +53,11 @@ class LoginScreen extends StatelessWidget {
                     timeInSecForIosWeb: 5,
                     backgroundColor: Colors.red,
                     textColor: Colors.white,
-                    fontSize: 16.0
-                );
-
+                    fontSize: 16.0);
               }
-
             }
           },
           builder: (context, state) {
-
-
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -105,7 +97,8 @@ class LoginScreen extends StatelessWidget {
                           }
                           return null;
                         },
-                        controller:context.read<LoginCubit>().controllerPassword,
+                        controller:
+                            context.read<LoginCubit>().controllerPassword,
                         keyboardType: TextInputType.visiblePassword,
                         isHidden: context.read<LoginCubit>().isHide,
                         hintText: "Password",
@@ -149,22 +142,23 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: 24.h,
                       ),
-                      ConditionalBuilder(condition:state is! LoginLoading,
-                          builder: (context) =>  CustomTextButton(
-                            label: "login",
-                            onTap: () {
-
-
-                              final loginCubit = context.read<LoginCubit>();
-                              if (loginCubit.fromKey.currentState!.validate()) {
-                                loginCubit.userLogin(loginCubit.controllerEmail.text.trim(), loginCubit.controllerPassword.text.trim(),);
-
-                              }
-
-                            },
-                          ),
-                          fallback:(context) => Center(child: CircularProgressIndicator()) ),
-
+                      ConditionalBuilder(
+                          condition: state is! LoginLoading,
+                          builder: (context) => CustomTextButton(
+                                label: "login",
+                                onTap: () {
+                                  final loginCubit = context.read<LoginCubit>();
+                                  if (loginCubit.fromKey.currentState!
+                                      .validate()) {
+                                    loginCubit.userLogin(
+                                      loginCubit.controllerEmail.text.trim(),
+                                      loginCubit.controllerPassword.text.trim(),
+                                    );
+                                  }
+                                },
+                              ),
+                          fallback: (context) =>
+                              Center(child: CircularProgressIndicator())),
                       SizedBox(
                         height: 24.h,
                       ),
@@ -200,7 +194,8 @@ class LoginScreen extends StatelessWidget {
                               Navigator.pushReplacement(context,
                                   MaterialPageRoute(
                                 builder: (context) {
-                                  return RegisterScreen();},
+                                  return RegisterScreen();
+                                },
                               ));
                             },
                             child: CustomText(

@@ -2,18 +2,19 @@ import 'package:e_commerce_app/core/constants/app_color.dart';
 import 'package:e_commerce_app/core/constants/app_image.dart';
 import 'package:e_commerce_app/core/widgets/custom_text.dart';
 import 'package:e_commerce_app/core/widgets/custom_text_button.dart';
-import 'package:e_commerce_app/features/order/presentation/add_address_screen.dart';
-import 'package:e_commerce_app/features/order/presentation/select_address_screen.dart';
+import 'package:e_commerce_app/core/widgets/custom_text_field.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SelectAddressScreen extends StatelessWidget {
-  const SelectAddressScreen({super.key});
+class AddAddressScreen extends StatelessWidget {
+  const AddAddressScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController mapController = TextEditingController();
     return Scaffold(
-    backgroundColor:Colors.white ,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
@@ -45,20 +46,18 @@ class SelectAddressScreen extends StatelessWidget {
                   )),
             ),
             CustomText(
-              text: "Select Address",
+              text: "New Address",
               color: AppColor.fontColor,
               fontWeight: FontWeight.w600,
               fontSize: 18.sp,
             ),
             GestureDetector(
-              onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => AddAddressScreen(),));
-              },
+              onTap: () {},
               child: Container(
                   height: 44.h,
                   width: 44.h,
                   padding:
-                  EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
+                      EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(34.r),
@@ -69,39 +68,42 @@ class SelectAddressScreen extends StatelessWidget {
                       border: Border.all(
                           color: AppColor.fontLabelColor, width: 1.w)),
                   child: Icon(
-                    Icons.add,
+                    CupertinoIcons.search,
                     size: 18.sp,
                   )),
             ),
-
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(top: 16.h,left: 20.w,right: 20.w),
-          child: Column(
-            children: [
-              ListView.separated(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-
-                  itemBuilder: (context, index) => CustomAddressItem(),
-                  separatorBuilder: (context, index) => SizedBox(
-                        height: 16.h,
-                      ),
-                  itemCount: 3),
-              SizedBox(height: 190.h,),
-
-
-              CustomTextButton(label: "SelectAddress"),
-
-            ],
-          ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 30.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(AppImage.mapAddress, width: 335.w, height: 378.h),
+            SizedBox(height: 24.h,),
+            CustomText(
+                text: "Select your location from the map",
+                fontSize: 18.sp,
+                color: AppColor.fontColor,
+                fontWeight: FontWeight.w600),
+            CustomText(
+                text:
+                    "Move the pin on the map to find your location and select the delivery address",
+                fontSize: 14.sp,
+                color: AppColor.subFontColor,
+                fontWeight: FontWeight.w400),
+            SizedBox(height: 16.h,),
+            CustomTextField(
+              suffixIcon:Icon(CupertinoIcons.location_solid),
+                labelText: "Address Detail",
+                keyboardType: TextInputType.text,
+                controller: mapController),
+            SizedBox(height: 24.h,),
+            CustomTextButton(label: "Confirm Address"),
+          ],
         ),
       ),
     );
   }
 }
-
-

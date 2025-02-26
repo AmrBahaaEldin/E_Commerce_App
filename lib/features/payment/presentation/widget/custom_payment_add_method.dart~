@@ -28,7 +28,7 @@ class _CustomPaymentAddMethodState extends State<CustomPaymentAddMethod> {
         padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(16.r)),
-          border: Border.all(width: 1.w,color:isSelectPayment?Colors.orange:AppColor.backgroundColor),),
+          border: Border.all(width: 1.w,color:isSelectPayment?Colors.orange:AppColor.subFontColor),),
 
         child: Row(
           children: [

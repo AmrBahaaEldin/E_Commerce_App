@@ -49,7 +49,6 @@ class CustomSheetPayment extends StatelessWidget {
               fontWeight: FontWeight.w600),
           SizedBox(height: 24.h,),
           CustomPaymentAddMethod(),
-
           Spacer(),
           GestureDetector(onTap: () {
             Navigator.push(context, MaterialPageRoute(

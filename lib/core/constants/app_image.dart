@@ -28,4 +28,7 @@ static const String homeProfile="assets/png/img_4.png";
 ///////////////////////////////////////////////////////
 static const String createPayment="assets/png/create payment.png";
 static const String logoMasterCard="assets/png/logomastercard .png";
+static const String homeAddress="assets/png/homeAddress.png";
+static const String markMap="assets/png/markMap.png";
+static const String mapAddress="assets/png/mapAddress.png";
 }

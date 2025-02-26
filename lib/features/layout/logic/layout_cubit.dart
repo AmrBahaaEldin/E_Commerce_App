@@ -17,7 +17,7 @@ class LayoutCubit extends Cubit<LayoutState> {
   List<Widget>bodyScreen = [
     HomeScreen(),
     SearchScreen(),
-    WishlistScreen(),
+    //WishlistScreen(),
     CartScreen(),
     ProfileScreen(),
   ];
