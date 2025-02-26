@@ -1,5 +1,7 @@
 import 'package:e_commerce_app/core/constants/app_image.dart';
 import 'package:e_commerce_app/core/widgets/custom_text.dart';
+import 'package:e_commerce_app/features/layout/presentation/layout_screen.dart';
+import 'package:e_commerce_app/features/order/presentation/confirm_order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -54,14 +56,14 @@ class OrderSuccess extends StatelessWidget {
           GestureDetector(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => OtpScreen(),));
+                    MaterialPageRoute(builder: (context) => ConfirmOrderScreen(),));
               },
               child: CustomTextButton(label: "view order",)),
           SizedBox(height: 12.h,),
           GestureDetector(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => OtpScreen(),));
+                    MaterialPageRoute(builder: (context) => LayoutScreen(),));
               },
               child: CustomTextButton(label: "Back to Home",
                 backgroundColor: Colors.white,

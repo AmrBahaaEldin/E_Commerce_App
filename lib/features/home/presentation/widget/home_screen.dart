@@ -296,7 +296,8 @@ class HomeScreen extends StatelessWidget {
                 // ✅ 4️⃣ شبكة المنتجات باستخدام SliverGrid
                ConditionalBuilder(condition: context.watch<HomeCubit>().homeModel.isNotEmpty, builder:(context) => SliverGrid(
                  delegate: SliverChildBuilderDelegate(
-                       (context, index) => Container(
+                       (context, index) =>
+                           Container(
                      margin: EdgeInsets.symmetric(horizontal: 20.w),
                      padding: EdgeInsets.symmetric(
                          horizontal: 12.w, vertical: 12.h),

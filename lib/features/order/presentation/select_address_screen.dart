@@ -4,6 +4,7 @@ import 'package:e_commerce_app/core/widgets/custom_text.dart';
 import 'package:e_commerce_app/core/widgets/custom_text_button.dart';
 import 'package:e_commerce_app/features/order/presentation/add_address_screen.dart';
 import 'package:e_commerce_app/features/order/presentation/select_address_screen.dart';
+import 'package:e_commerce_app/features/order/presentation/widget/custom_address_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

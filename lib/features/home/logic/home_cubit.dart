@@ -25,7 +25,6 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeLoading());
       Response response = await DioHelper.getData(
           url: Endpoints.productsEndpoint);
-      print("_____________________________________________${response.statusCode}_________________________");
 
       if (response.data is Map<String, dynamic>) {
         homeModel = (response.data as List)
@@ -40,7 +39,7 @@ class HomeCubit extends Cubit<HomeState> {
             .toList();
       }
 
-      print("__________________${homeModel[1].title}");
+
 
       emit(HomeSuccess(homeModel));
     }
