@@ -11,7 +11,7 @@ import 'package:meta/meta.dart';
 
 import '../../../core/network/dio_helper.dart';
 import '../../../core/network/endpoints.dart';
-import '../../home/presentation/widget/home_screen.dart';
+import '../../home/presentation/home_screen.dart';
 
 part 'login_state.dart';
 

@@ -3,7 +3,7 @@ import 'package:e_commerce_app/core/constants/app_image.dart';
 import 'package:e_commerce_app/core/widgets/custom_text.dart';
 import 'package:e_commerce_app/core/widgets/custom_text_button.dart';
 import 'package:e_commerce_app/core/widgets/custom_text_field.dart';
-import 'package:e_commerce_app/features/home/presentation/widget/notification_screen.dart';
+
 import 'package:e_commerce_app/features/payment/presentation/payment_method_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

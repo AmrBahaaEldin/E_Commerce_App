@@ -24,59 +24,7 @@
 //       ),
 //       body: Padding(
 //         padding: EdgeInsets.only(left: 20.w, right: 20.w),
-//         child: CustomScrollView(
-//           slivers: [
-//
-//             SliverGrid(
-//               delegate: SliverChildBuilderDelegate(
-//                     (context, index) =>
-//                     Container(
-//                       padding: EdgeInsets.symmetric(horizontal: 12.w),
-//                       decoration: BoxDecoration(
-//                         borderRadius: BorderRadius.circular(16.r),
-//                         color: Colors.white,
-//                       ),
-//                       child: Column(
-//                         children: [
-//                           Image(
-//                             width: 131.w,
-//                             height: 123.h,
-//                             image: AssetImage(mode[index].image!),
-//                           ),
-//                           SizedBox(
-//                             height: 4.h,
-//                           ),
-//                           CustomText(
-//                             text: favoriteProducts[index].title!,
-//                             fontSize: 14.sp,
-//                             color: AppColor.fontColor,
-//                             fontWeight: FontWeight.w600,
-//                           ),
-//                           SizedBox(
-//                             height: 4.h,
-//                           ),
-//                           CustomText(
-//                             text: "\$ ${favoriteProducts[index].price}",
-//                             fontSize: 16.sp,
-//                             color: AppColor.importFontColor,
-//                             fontWeight: FontWeight.w700,
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                 childCount: favoriteProducts.length,
-//               ),
-//               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                   crossAxisCount: 2,
-//                   crossAxisSpacing: 24.h, //vertical
-//                   mainAxisSpacing: 16.w, //horizontal
-//                   childAspectRatio: 159.w / 215.h //(weidth/height)
-//
-//                 //vertical
-//               ),
-//             ),
-//           ],
-//         ),
+//         child:
 //       ),
 //     );
 //   }

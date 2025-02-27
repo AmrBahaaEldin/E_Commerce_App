@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:e_commerce_app/core/constants/app_color.dart';
 import 'package:e_commerce_app/core/widgets/custom_text_button.dart';
 import 'package:e_commerce_app/features/search/logic/search_cubit.dart';
 import 'package:e_commerce_app/features/search/presentation/widget/categories_gird_view.dart';
+import 'package:e_commerce_app/features/search/presentation/widget/custom_Search.dart';
 import 'package:e_commerce_app/features/search/presentation/widget/price_range_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,42 +60,7 @@ class SearchResultScreen extends StatelessWidget {
                           SizedBox(
                             width: 283.w,
                             height: 56.h,
-                            child: TextField(
-                              controller: searchController,
-                              decoration: InputDecoration(
-                                hintText: 'Search laptop, headset..',
-                                hintStyle: GoogleFonts.plusJakartaSans(
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.50.h,
-                                    color: AppColor.subFontColor),
-                                prefixIcon: const Icon(
-                                  CupertinoIcons.search,
-                                  color: AppColor.fontColor,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(34.r),
-                                  borderSide: const BorderSide(
-                                      width: 1, color: Colors.green),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(34.r),
-                                  borderSide: const BorderSide(
-                                      width: 1, color: Colors.yellow),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(34.r),
-                                  borderSide: const BorderSide(
-                                      width: 1, color: Colors.red),
-                                ),
-                              ),
-                              onChanged: (query) {
-                                queryString = query;
-                                innerContext
-                                    .read<SearchCubit>()
-                                    .searchProducts(query);
-                              },
-                            ),
+                            child: CustomSearch(),
                           ),
                         ],
                       ),
@@ -177,90 +145,93 @@ class SearchResultScreen extends StatelessWidget {
               showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return Container(
-                        width: 375.w,
-                        height: 308.h,
-                        decoration: ShapeDecoration(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(24.r),
-                              topRight: Radius.circular(24.r),
+                    return BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                      child: Container(
+                          width: 375.w,
+                          height: 308.h,
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(24.r),
+                                topRight: Radius.circular(24.r),
+                              ),
                             ),
                           ),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.w, vertical: 10.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                child: Container(
-                                  width: 66.67,
-                                  height: 4,
-                                  decoration: ShapeDecoration(
-                                    color: Colors.black
-                                        .withValues(alpha: 0.20000000298023224),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(11),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20.w, vertical: 10.h),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Center(
+                                  child: Container(
+                                    width: 66.67,
+                                    height: 4,
+                                    decoration: ShapeDecoration(
+                                      color: Colors.black
+                                          .withValues(alpha: 0.20000000298023224),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(11),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 12.h,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Filter',
-                                    style: GoogleFonts.plusJakartaSans(
-                                      color: AppColor.fontColor,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.44.h,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Reset',
-                                    style: GoogleFonts.plusJakartaSans(
-                                      color: AppColor.importFontColor,
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.43.h,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 48.h,
-                              ),
-                              Text(
-                                'Price Range',
-                                style: GoogleFonts.plusJakartaSans(
-                                  color: AppColor.fontColor,
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.44.h,
+                                SizedBox(
+                                  height: 12.h,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 16.h,
-                              ),
-                              PriceRangeSlider(),
-                              SizedBox(
-                                height: 24.h,
-                              ),
-                              CustomTextButton(
-                                onTap: () {},
-                                label: 'Apply filter',
-                              )
-                            ],
-                          ),
-                        ));
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Filter',
+                                      style: GoogleFonts.plusJakartaSans(
+                                        color: AppColor.fontColor,
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.w600,
+                                        height: 1.44.h,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Reset',
+                                      style: GoogleFonts.plusJakartaSans(
+                                        color: AppColor.importFontColor,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w600,
+                                        height: 1.43.h,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 48.h,
+                                ),
+                                Text(
+                                  'Price Range',
+                                  style: GoogleFonts.plusJakartaSans(
+                                    color: AppColor.fontColor,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.44.h,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 16.h,
+                                ),
+                                PriceRangeSlider(),
+                                SizedBox(
+                                  height: 24.h,
+                                ),
+                                CustomTextButton(
+                                  onTap: () {},
+                                  label: 'Apply filter',
+                                )
+                              ],
+                            ),
+                          )),
+                    );
                   });
             },
             child: Row(

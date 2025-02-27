@@ -43,20 +43,20 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
    dio = Dio(
        BaseOptions(
        baseUrl: Endpoints.baseUrl,
-       headers: {
-           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-           'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-        },
+       // headers: {
+       //     'Content-Type': 'application/json',
+       //    'Access-Control-Allow-Origin': '*',
+       //     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+       //  },
       ),
    );
-     dio.interceptors.add(PrettyDioLogger(
-       requestBody: true,
-      error: true,
-       responseBody: true,
-       requestHeader: true,
-      responseHeader: true,
-    ),);
+    //  dio.interceptors.add(PrettyDioLogger(
+    //    requestBody: true,
+    //   error: true,
+    //    responseBody: true,
+    //    requestHeader: true,
+    //   responseHeader: true,
+    // ),);
  }
 
   /// Makes a GET request to the specified URL.
@@ -136,9 +136,9 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
   /// Returns a [Future] with a [Response] object.
   static Future<Response> postData({
     required String url,
-   required Map<String, dynamic> data,
+    Map<String, dynamic>? data,
     String? token,
-   Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? queryParameters,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {

@@ -2,7 +2,7 @@
 
 import 'package:e_commerce_app/core/constants/app_color.dart';
 import 'package:e_commerce_app/features/cart/presentation/cart_screen.dart';
-import 'package:e_commerce_app/features/home/presentation/widget/home_screen.dart';
+
 import 'package:e_commerce_app/features/layout/logic/layout_cubit.dart';
 import 'package:e_commerce_app/features/layout/logic/layout_state.dart';
 import 'package:e_commerce_app/features/layout/presentation/layout_screen.dart';

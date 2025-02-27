@@ -10,7 +10,7 @@ import 'package:e_commerce_app/features/home/logic/home_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
+
 
 
 class HomeCubit extends Cubit<HomeState> {
