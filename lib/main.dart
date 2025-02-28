@@ -5,6 +5,7 @@ import 'package:e_commerce_app/core/network/dio_helper.dart';
 import 'package:e_commerce_app/core/network/new_api.dart';
 import 'package:e_commerce_app/features/cart/presentation/cart_screen.dart';
 import 'package:e_commerce_app/features/home/presentation/detail_product_screen.dart';
+import 'package:e_commerce_app/features/intro/presentation/widget/onboarding.dart';
 
 import 'package:e_commerce_app/features/intro/presentation/widget/splash_screen.dart';
 import 'package:e_commerce_app/features/layout/presentation/layout_screen.dart';
@@ -47,7 +48,7 @@ class ZaladaApp extends StatelessWidget {
       splitScreenMode: false,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LayoutScreen(),
+        home: LoginScreen(),
       ),
 
 

@@ -1,6 +1,7 @@
 
 
 
+import 'package:e_commerce_app/features/intro/presentation/widget/onboarding.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +13,7 @@ class IntroCubit extends Cubit<IntroState> {
   int index=0;
   void changePage(context) {
     if (index==2) {
-      Navigator.push(context, CupertinoPageRoute(builder: (context) => LoginScreen()));
+      checkCache(context);
     }
     else{
       index++;

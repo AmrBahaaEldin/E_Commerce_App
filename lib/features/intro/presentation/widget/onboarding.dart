@@ -1,4 +1,8 @@
 import 'package:circle_progress_bar/circle_progress_bar.dart';
+import 'package:e_commerce_app/core/db/cache/cache.dart';
+import 'package:e_commerce_app/features/intro/logic/intro_cubit.dart';
+import 'package:e_commerce_app/features/intro/logic/intro_state.dart';
+import 'package:e_commerce_app/features/layout/presentation/layout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,8 +10,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/constants/app_color.dart';
 import '../../../login/presentation/widget/login_screen.dart';
-import '../../../profile/logic/intro_cubit.dart';
-import '../../../profile/logic/intro_state.dart';
+import '../../../profile/logic/profile_cubit.dart';
+import '../../../profile/logic/profile_state.dart';
 import '../../data/introModel.dart';
 
 class Onboarding extends StatelessWidget {
@@ -22,7 +26,7 @@ class Onboarding extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen(),), (route) => false);
+                checkCache(context);
               },
               child: Text(
                 "Skip",
@@ -112,4 +116,21 @@ class Onboarding extends StatelessWidget {
       ),
     );
   }
+
+
+}
+void checkCache(BuildContext context) {
+  CacheHelper.getData(key: 'token') != null
+      ? Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LayoutScreen(),
+      ),
+          (route) => false)
+      : Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(),
+      ),
+          (route) => false);
 }
