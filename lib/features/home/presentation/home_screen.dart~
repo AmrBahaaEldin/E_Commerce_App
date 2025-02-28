@@ -42,8 +42,10 @@ class HomeScreen extends StatelessWidget {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [
-                              Color(0xffFDA56C),
                               Color(0xffFD6C8A),
+                              Color(0xffFDA56C),
+                              Color(0xffFEB5AE),
+
                             ],
                           ),
                         ),
@@ -305,7 +307,9 @@ class HomeScreen extends StatelessWidget {
                             GestureDetector(
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(builder: (c) {
-                             return DetailProductScreen(id: HomeCubit.get(context).homeModel[index].id.toString());
+                             return DetailProductScreen(id: 5.toString()
+                             //HomeCubit.get(context).homeModel[index].id.toString()
+                             );
                             },));
                           },
                           child: Container(

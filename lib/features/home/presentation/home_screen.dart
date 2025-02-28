@@ -307,7 +307,10 @@ class HomeScreen extends StatelessWidget {
                             GestureDetector(
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(builder: (c) {
-                             return DetailProductScreen(id: HomeCubit.get(context).homeModel[index].id.toString());
+                             return DetailProductScreen(id:  HomeCubit.get(context).homeModel[index].id.toString()
+
+                             //7.toString()
+                             );
                             },));
                           },
                           child: Container(

@@ -20,7 +20,7 @@ class DetailProductModel {
 }
 
 class Rating {
-  double? rate;
+  num? rate;
   int? count;
 
   Rating({this.rate, this.count});

@@ -14,7 +14,7 @@ class FavouriteCubit extends Cubit<FavouriteState> {
     emit(FavouriteLoading());
     try {
 
-      await SQLHelper.get1().then((value) {
+      await SQLHelper.get().then((value) {
         favouriteProduct = value.map((e) => FavouriteModel.fromJson(e)).toList();});
       emit(FavouriteLoaded());
     }
@@ -26,7 +26,7 @@ class FavouriteCubit extends Cubit<FavouriteState> {
   Future<void>deleteFavouriteProduct(String id)async{
     try{
       emit(FavouriteLoading());
-      await SQLHelper.delete1(id);
+      await SQLHelper.delete(id);
       await getFavouriteData();
       if (favouriteProduct.isEmpty) {
         emit(FavouriteProductCartEmpty());

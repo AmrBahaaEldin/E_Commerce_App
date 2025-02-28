@@ -31,6 +31,7 @@ class DetailProductCubit extends Cubit<DetailProductState> {
         emit(DetailProductError(error: "Failed to fetch product details"));
       }
     } catch (e) {
+      print("eeeeeeeeeeee${e.toString()}");
       emit(DetailProductError(error: e.toString()));
     }
   }

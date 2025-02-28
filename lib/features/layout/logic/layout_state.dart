@@ -1,6 +1,10 @@
+abstract class BottomNavigatorBarState {}
 
-abstract class LayoutState {}
+final class BottomNavigatorBarInitial extends BottomNavigatorBarState {}
 
-final class LayoutInitial extends LayoutState {}
-final class ChangeScreenLayout extends LayoutState {}
+final class BottomNavigatorBarChanges extends BottomNavigatorBarState {
+  final int index;
+  final String item;
+  BottomNavigatorBarChanges(this.index, this.item);
 
+}

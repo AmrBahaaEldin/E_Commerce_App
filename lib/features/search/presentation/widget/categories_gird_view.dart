@@ -13,21 +13,19 @@ const  CategoriesGridView({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
-    print("Products in GridView: ${products.length}");
-    return GridView.builder(
-        physics: const NeverScrollableScrollPhysics(),
+    return Padding(
+      padding:  EdgeInsets.only(left: 20.w,top: 10.h),
+      child: GridView.builder(
         shrinkWrap: true,
-
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200.w,
-            crossAxisSpacing: 14.h, //vertical
-            mainAxisSpacing: 16.w, //horizontal
-            childAspectRatio: 159.w / 215.h //(width/height)
-        ),
+        physics: NeverScrollableScrollPhysics(),
         itemCount: products.length,
-        itemBuilder: (BuildContext context, index) {
-          return  Container(
-            margin: EdgeInsets.symmetric(horizontal: 20.w),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio:   159.h /215.w,
+            crossAxisCount: 2,
+            crossAxisSpacing: 16.h,
+            mainAxisSpacing: 20.h
+        ), itemBuilder: (context, index) {
+          return Container(
             padding: EdgeInsets.symmetric(
                 horizontal: 12.w, vertical: 12.h),
             decoration: BoxDecoration(
@@ -35,29 +33,31 @@ const  CategoriesGridView({super.key, required this.products});
               color: Colors.white,
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+
               children: [
                 // width: 131.w,
                 // height: 123.h,
                 // NetworkImage(HomeCubit.get(context)
                 //     .homeModel[index]
                 //     .image),
-                CachedNetworkImage(
-                  imageUrl:
-                 products[index].image!,
-                  placeholder: (context, url) =>
-                      CircularProgressIndicator(),
-                  errorWidget: (context, url, error) =>
-                      Icon(Icons.error),
-                  height: 123.h,
-                  width: 131.w,
+                Expanded(
+                  child: CachedNetworkImage(
+                    imageUrl: products[index].image!,
+                    placeholder: (context, url) =>
+                        CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                        Icon(Icons.error),
+                    height: 123.h,
+                    width: 131.w,
+                  ),
                 ),
                 SizedBox(
                   height: 4.h,
                 ),
                 CustomText(
-                  text:
-                  products[index].title!,
+                  text:products[index].title!,
                   fontSize: 14.sp,
                   color: AppColor.fontColor,
                   fontWeight: FontWeight.w600,
@@ -67,7 +67,7 @@ const  CategoriesGridView({super.key, required this.products});
                 ),
                 CustomText(
                   text:
-                  "\$ ${products[index].price!}",
+                  "\$${products[index].price!}",
                   fontSize: 16.sp,
                   color: AppColor.importFontColor,
                   fontWeight: FontWeight.w700,
@@ -75,7 +75,8 @@ const  CategoriesGridView({super.key, required this.products});
               ],
             ),
           );
-        });
+        },),
+    );
   }
 }
 

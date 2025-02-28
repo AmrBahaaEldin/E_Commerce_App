@@ -6,9 +6,10 @@ class SQLHelper {
   static Future<Database> initDb() async {
     return sql.openDatabase(
       'products.db', // Database name
-      version: 1, // Version number
+      version: 2, // Version number
       onCreate: (Database database, int version) async {
         await createTable(database);
+        await createTable1(database);
       },
     );
   }
@@ -17,7 +18,7 @@ class SQLHelper {
     // description TEXT,
     await database.execute("""
       CREATE TABLE products(
-        id INTEGER PRIMARY KEY NOT NULL,
+        id TEXT PRIMARY KEY NOT NULL,
         title TEXT NOT NULL,
         image TEXT,
         quantity INTEGER NOT NULL,
@@ -26,9 +27,24 @@ class SQLHelper {
     """);
     debugPrint("Table Created");
   }
+  ///////////////////////////////////////////////////////////
+  static Future<void> createTable1(Database database) async {
+    // description TEXT,
+    await database.execute("""
+      CREATE TABLE productsfav(
+        id TEXT PRIMARY KEY NOT NULL,
+        title TEXT NOT NULL,
+        image TEXT,
+        quantity INTEGER NOT NULL,
+        price REAL NOT NULL
+      )
+    """);
+    debugPrint("Table Created 1");
+  }
 
+///////////////////////////////////////////////////////////
   // Add a product
-  static Future<int> add(int productId, String name, String imageUrl, int quantity, double price) async {
+  static Future<int> add(String productId, String name, String imageUrl, int quantity, double price) async {
     final db = await SQLHelper.initDb();
     final data = {
       'id': productId,
@@ -41,13 +57,32 @@ class SQLHelper {
     debugPrint("Product Added");
     return id;
   }
-
+  ////////////////////////////////////////////////
+  static Future<int> add1(String productId, String name, String imageUrl, int quantity, double price) async {
+    final db1 = await SQLHelper.initDb();
+    final data = {
+      'id': productId,
+      'title': name,
+      'image': imageUrl,
+      'quantity': quantity,
+      'price': price
+    };
+    final id = await db1.insert('productsfav', data, conflictAlgorithm: ConflictAlgorithm.replace);
+    debugPrint("productsfav Added");
+    return id;
+  }
+////////////////////////////////////////////////
   // Read all products
   static Future<List<Map<String, dynamic>>> get() async {
     final db = await SQLHelper.initDb();
     return db.query('products', orderBy: "id");
   }
-
+  /////////////////////////////////////////////////////////////
+  static Future<List<Map<String, dynamic>>> get1() async {
+    final db1 = await SQLHelper.initDb();
+    return db1.query('productsfav', orderBy: "id");
+  }
+////////////////////////////////////////////////////////////////
   // Get product by productId
   static Future<List<Map<String, dynamic>>> getByProductId(String productId) async {
     final db = await SQLHelper.initDb();
@@ -55,7 +90,7 @@ class SQLHelper {
   }
 
   // Update product
-  static Future<int> update(int productId, String name,  String imageUrl, int quantity, double price) async {
+  static Future<int> update(String productId, String name,  String imageUrl, int quantity, double price) async {
     final db = await SQLHelper.initDb();
     final data = {
       'title': name,
@@ -72,6 +107,15 @@ class SQLHelper {
     final db = await SQLHelper.initDb();
     try {
       await db.delete("products", where: "id = ?", whereArgs: [productId]);
+    } catch (err) {
+      debugPrint("Something went wrong: $err");
+    }
+  }
+  ////////////////////////////////////////////////////////
+  static Future<void> delete1(String productId) async {
+    final db1 = await SQLHelper.initDb();
+    try {
+      await db1.delete("productsfav", where: "id = ?", whereArgs: [productId]);
     } catch (err) {
       debugPrint("Something went wrong: $err");
     }

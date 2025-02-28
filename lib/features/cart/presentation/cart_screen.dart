@@ -129,7 +129,7 @@ class CartItem extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
-
+    
               children: [
                 // width: 131.w,
                 // height: 123.h,
@@ -171,7 +171,7 @@ class CartItem extends StatelessWidget {
                     ),
                     IconButton(onPressed: () {
                      CartCubit.get(context).deleteProduct(CartCubit.get(context).products[index].id!);
-
+    
                     }, icon:Icon(CupertinoIcons.delete_solid),color:AppColor.fontSelectColor, )
                   ],
                 ),
@@ -194,6 +194,7 @@ class CartEmpty extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(left: 55.w, right: 55.w, top: 44.h),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
             SvgPicture.asset(AppImage.card),
