@@ -18,6 +18,7 @@ class EditProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -66,7 +67,7 @@ class EditProfileScreen extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 60.r,
-                    backgroundImage: AssetImage('assets/png/img_2.png'), //
+                    backgroundImage: AssetImage('assets/png/img_11.png'), //
                   ),
                   Container(
                     alignment: Alignment.bottomCenter,

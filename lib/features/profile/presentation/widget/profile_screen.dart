@@ -38,141 +38,160 @@ class ProfileScreen extends StatelessWidget {
             backgroundColor: Colors.white,
             body: ConditionalBuilder(
                 condition: ProfileCubit.get(context).userModel != null,
-                builder: (context) => CustomScrollView(
+                builder: (context) =>
+                    CustomScrollView(
                       slivers: [
                         SliverToBoxAdapter(
-                          child: Container(
-                            height: 266.h,
-                            padding: EdgeInsets.only(
-                                left: 20.w, top: 30.h, right: 20.h),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.pink.shade50,
-                                  Colors.blue.shade100
-                                ],
-                                begin: Alignment.topRight,
-                                end: Alignment.bottomLeft,
-                              ),
-                            ),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            alignment: Alignment.bottomCenter,
+                            children: [
+                              Container(
+                                height: 380.h,
+                                padding: EdgeInsets.only(
+                                    left: 20.w, top: 40.h, right: 20.h),
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Colors.pink.shade50,
+                                      Colors.blue.shade100
+                                    ],
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
+                                  ),
+                                ),
+                                child: Column(
                                   children: [
-                                    Container(
-                                        height: 44.h,
-                                        width: 44.h,
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 12.h, horizontal: 12.w),
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.only(
-                                              bottomLeft: Radius.circular(34.r),
-                                              bottomRight:
+                                    Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                            height: 44.h,
+                                            width: 44.h,
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 12.h, horizontal: 12.w),
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.only(
+                                                  bottomLeft: Radius.circular(34.r),
+                                                  bottomRight:
                                                   Radius.circular(34.r),
-                                              topLeft: Radius.circular(34.r),
-                                              topRight: Radius.circular(34.r),
-                                            ),
-                                            border: Border.all(
-                                                color: AppColor.fontLabelColor,
-                                                width: 1.w)),
-                                        child: Icon(
-                                          Icons.arrow_back_outlined,
-                                          size: 20.sp,
-                                        )),
+                                                  topLeft: Radius.circular(34.r),
+                                                  topRight: Radius.circular(34.r),
+                                                ),
+                                                border: Border.all(
+                                                    color: AppColor.fontLabelColor,
+                                                    width: 1.w)),
+                                            child: Icon(
+                                              Icons.arrow_back_outlined,
+                                              size: 20.sp,
+                                            )),
+                                        CustomText(
+                                          text: "Profile",
+                                          color: AppColor.fontColor,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 18.sp,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      EditProfileScreen(),
+                                                ));
+                                          },
+                                          child: Container(
+                                              height: 44.h,
+                                              width: 44.h,
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 12.h, horizontal: 12.w),
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                    Radius.circular(34.r),
+                                                    bottomRight:
+                                                    Radius.circular(34.r),
+                                                    topLeft: Radius.circular(34.r),
+                                                    topRight: Radius.circular(34.r),
+                                                  ),
+                                                  border: Border.all(
+                                                      color:
+                                                      AppColor.fontLabelColor,
+                                                      width: 1.w)),
+                                              child: Image(
+                                                  image: AssetImage(
+                                                      "assets/png/img.png"))),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 24.h),
+                                    CircleAvatar(
+                                      radius: 50.r,
+                                      backgroundImage: NetworkImage(ProfileCubit.get(context).userModel!.data!.image!),
+                                    ),
+                                    SizedBox(height: 16.h),
                                     CustomText(
-                                      text: "Profile",
+                                      text: ProfileCubit.get(context).userModel!.data!.name
+                                      ,
+                                      fontSize: 18.sp,
                                       color: AppColor.fontColor,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 18.sp,
                                     ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  EditProfileScreen(),
-                                            ));
-                                      },
-                                      child: Container(
-                                          height: 44.h,
-                                          width: 44.h,
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 12.h, horizontal: 12.w),
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(34.r),
-                                                bottomRight:
-                                                    Radius.circular(34.r),
-                                                topLeft: Radius.circular(34.r),
-                                                topRight: Radius.circular(34.r),
-                                              ),
-                                              border: Border.all(
-                                                  color:
-                                                      AppColor.fontLabelColor,
-                                                  width: 1.w)),
-                                          child: Image(
-                                              image: AssetImage(
-                                                  "assets/png/img.png"))),
+                                    SizedBox(height: 4.h),
+                                    CustomText(
+                                      text: ProfileCubit.get(context).userModel!.data!.email,
+                                      fontSize: 14.sp,
+                                      color: AppColor.subFontColor,
+                                      fontWeight: FontWeight.w400,
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 24.h),
-                                CircleAvatar(
-                                  radius: 50.r,
-                                  backgroundImage: NetworkImage(ProfileCubit.get(context).userModel!.data!.image!),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 40.w, right: 40.w),
+
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(24.r),
+                                        topRight: Radius.circular(24.r)),
+                                    color: Colors.white,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            height: 24.h,
+                                          ),
+                                          SvgPicture.asset(AppImage.bigLine),
+                                          SizedBox(
+                                            height: 28.h,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(left: 20.w),
+                                            child: CustomText(
+                                                text: "Account Settings",
+                                                fontSize: 14.sp,
+                                                color: AppColor.subFontColor,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          SizedBox(
+                                            height: 16.h,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                SizedBox(height: 16.h),
-                                CustomText(
-                                  text: ProfileCubit.get(context).userModel!.data!.name
-                                  ,
-                                  fontSize: 18.sp,
-                                  color: AppColor.fontColor,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                SizedBox(height: 4.h),
-                                CustomText(
-                                  text: ProfileCubit.get(context).userModel!.data!.email,
-                                  fontSize: 14.sp,
-                                  color: AppColor.subFontColor,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SliverToBoxAdapter(
-                          child: Column(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 24.h,
-                                  ),
-                                  SvgPicture.asset(AppImage.bigLine),
-                                  SizedBox(
-                                    height: 28.h,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 20.w),
-                                    child: CustomText(
-                                        text: "Account Settings",
-                                        fontSize: 14.sp,
-                                        color: AppColor.subFontColor,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  SizedBox(
-                                    height: 16.h,
-                                  ),
-                                ],
                               ),
                             ],
                           ),
                         ),
+
                         SliverList.separated(
                           itemCount: accountSettings.length,
                           separatorBuilder: (context, index) => Padding(

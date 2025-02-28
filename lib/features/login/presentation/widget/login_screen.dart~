@@ -42,22 +42,14 @@ class LoginScreen extends StatelessWidget {
                     textColor: Colors.white,
                     fontSize: 16.0);
                 final token = state.loginModel.data?.token;
-                if (token != null && token.isNotEmpty) {
-                  await CacheHelper.saveData(key: 'token', value: token);
-                  print("🔹 New Token Stored: $token");
-                  Future.delayed(Duration(milliseconds: 500), () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => LayoutScreen()),
-                          (route) => false,
-                    );
-                  });
-                }
-                else {
-                  print("⚠️ Error: Token is null or empty");
-                }
+               await CacheHelper.saveData(key: 'token', value: state.loginModel.data!.token);
 
-                
+
+
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => LayoutScreen()),
+                    (route) => false);
 
               }
               else if (state.loginModel.status == false) {

@@ -13,9 +13,12 @@ import 'package:e_commerce_app/features/login/presentation/widget/login_screen.d
 import 'package:e_commerce_app/features/order/presentation/confirm_order_screen.dart';
 import 'package:e_commerce_app/features/order/presentation/select_address_screen.dart';
 import 'package:e_commerce_app/features/order/presentation/select_payment_screen.dart';
+import 'package:e_commerce_app/features/profile/presentation/widget/edit_profile_screen.dart';
+import 'package:e_commerce_app/features/profile/presentation/widget/profile_screen.dart';
 import 'package:e_commerce_app/features/register/presentation/widget/register_screen.dart';
 import 'package:e_commerce_app/features/search/presentation/search_screen.dart';
 import 'package:e_commerce_app/features/wishlist/presentation/wishlist_screen.dart';
+import 'package:e_commerce_app/test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

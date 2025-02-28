@@ -62,24 +62,9 @@ class EditProfileScreen extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 24.h),
-              Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  CircleAvatar(
-                    radius: 60.r,
-                    backgroundImage: AssetImage('assets/png/img_2.png'), //
-                  ),
-                  Container(
-                    alignment: Alignment.bottomCenter,
-                      width: 96.75.w,
-                    height: 24.5.h,
-                    decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.3),
-                      borderRadius: BorderRadius.vertical(bottom: Radius.circular(30.r)),
-                    ),
-
-                      child: CustomText(text: "Edit", fontSize: 12.sp, color: AppColor.backgroundColor, fontWeight: FontWeight.w500,))
-                ],
+              CircleAvatar(
+                radius: 60.r,
+                backgroundImage: AssetImage('assets/png/img_11.png'), //
               ),
               CustomTextField(
                 controller: TextEditingController(),
