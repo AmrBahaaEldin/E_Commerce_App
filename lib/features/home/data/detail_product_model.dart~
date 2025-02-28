@@ -15,7 +15,7 @@ class DetailProductModel {
             rate: json['rating']['rate'], count: json['rating']['count']),
         image: json['image'],
         title: json['title'],
-        price: json['price'].toDouble());
+        price: json['price']);
   }
 }
 

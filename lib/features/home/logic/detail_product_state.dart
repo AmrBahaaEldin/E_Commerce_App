@@ -28,3 +28,6 @@ final class ProductsError extends DetailProductState {
   final String error;
   ProductsError({required this.error});
 }
+final class GreyColorState extends DetailProductState {}
+final class LowGreyColorState extends DetailProductState {}
+final class BrownColorState extends DetailProductState {}

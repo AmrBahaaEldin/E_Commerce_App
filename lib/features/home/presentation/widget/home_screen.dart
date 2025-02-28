@@ -5,8 +5,7 @@ import 'package:e_commerce_app/core/constants/app_image.dart';
 import 'package:e_commerce_app/core/widgets/custom_text.dart';
 import 'package:e_commerce_app/features/home/logic/home_cubit.dart';
 import 'package:e_commerce_app/features/home/logic/home_state.dart';
-import 'package:e_commerce_app/features/home/presentation/detail_product_screen.dart';
-import 'package:e_commerce_app/features/home/presentation/notification_screen.dart';
+import 'package:e_commerce_app/features/home/presentation/widget/notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,15 +36,12 @@ class HomeScreen extends StatelessWidget {
                             EdgeInsets.only(top: 48.h, left: 20.w, right: 20.w),
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            stops: [0.2, 0.8, 0.9],
-
+                            stops: [0.0, 1.0],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [
-                              Color(0xffFD6C8A),
                               Color(0xffFDA56C),
-                              Color(0xffFEB5AE),
-
+                              Color(0xffFD6C8A),
                             ],
                           ),
                         ),
@@ -179,8 +175,7 @@ class HomeScreen extends StatelessWidget {
                   child: ConditionalBuilder(
                       condition:
                           context.watch<HomeCubit>().homeModel.isNotEmpty,
-                      builder: (context) =>
-                          Padding(
+                      builder: (context) => Padding(
                             padding: EdgeInsets.only(left: 20.w),
                             child: SizedBox(
                               height: 215.h,
@@ -204,15 +199,16 @@ class HomeScreen extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         CachedNetworkImage(
-                                          imageUrl: HomeCubit.get(context)
-                                              .homeModel[index]
-                                              .image!,
+                                          imageUrl:
+                                          HomeCubit.get(context).homeModel[index].image!,
                                           placeholder: (context, url) =>
                                               CircularProgressIndicator(),
                                           errorWidget: (context, url, error) =>
                                               Icon(Icons.error),
                                           height: 100.h,
+
                                         ),
+
                                         SizedBox(
                                           height: 4.h,
                                         ),
@@ -298,88 +294,97 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 // ✅ 4️⃣ شبكة المنتجات باستخدام SliverGrid
-                ConditionalBuilder(
-                  condition: context.watch<HomeCubit>().homeModel.isNotEmpty,
-                  builder: (context) => SliverPadding(padding:EdgeInsets.only(left: 20.w,right: 14.w) ,
-                    sliver: SliverGrid(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) =>
-                            GestureDetector(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (c) {
-                             return DetailProductScreen(id: HomeCubit.get(context).homeModel[index].id.toString());
-                            },));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 12.w, vertical: 12.h),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16.r),
-                              color: Colors.white,
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.center,
+               ConditionalBuilder(condition: context.watch<HomeCubit>().homeModel.isNotEmpty, builder:(context) => SliverGrid(
+                 delegate: SliverChildBuilderDelegate(
+                       (context, index) => Container(
+                     margin: EdgeInsets.symmetric(horizontal: 20.w),
+                     padding: EdgeInsets.symmetric(
+                         horizontal: 12.w, vertical: 12.h),
+                     decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(16.r),
+                       color: Colors.white,
+                     ),
+                     child: Column(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         // width: 131.w,
+                         // height: 123.h,
+                         // NetworkImage(HomeCubit.get(context)
+                         //     .homeModel[index]
+                         //     .image),
+                         CachedNetworkImage(
+                           imageUrl:
+                           HomeCubit.get(context).homeModel[index].image!,
+                           placeholder: (context, url) =>
+                               CircularProgressIndicator(),
+                           errorWidget: (context, url, error) =>
+                               Icon(Icons.error),
+                           height: 123.h,
+                           width: 131.w,
+                         ),
+                         SizedBox(
+                           height: 4.h,
+                         ),
+                         CustomText(
+                           text:
+                           HomeCubit.get(context).homeModel[index].title!,
+                           fontSize: 14.sp,
+                           color: AppColor.fontColor,
+                           fontWeight: FontWeight.w600,
+                         ),
+                         SizedBox(
+                           height: 4.h,
+                         ),
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
+                             CustomText(
+                               text:
+                               "\$ ${HomeCubit.get(context).homeModel[index].price.toString()}",
+                               fontSize: 16.sp,
+                               color: AppColor.importFontColor,
+                               fontWeight: FontWeight.w700,
+                             ),
+                             Container(
+                               height: 30.h,
+                               width: 30.w,
+                               padding: EdgeInsets.symmetric(
+                                   horizontal: 5.w, vertical: 5.h),
+                               decoration: ShapeDecoration(
+                                   color: AppColor.subFontColor,
+                                   shape: CircleBorder()),
+                               child: IconButton(
+                                 padding: EdgeInsets.zero,
+                                 onPressed: () {
+                                   HomeCubit.get(context).changeFav(index);
+                                 },
+                                 icon: Icon(
+                                   size: 20.sp,
+                                   HomeCubit.get(context)
+                                       .homeModel[index]
+                                       .isFav
+                                       ? Icons.favorite_outlined
+                                       : Icons.favorite_border_outlined,
+                                   color: AppColor.fontSelectColor,
+                                 ),
+                               ),
+                             ),
+                           ],
+                         ),
+                       ],
+                     ),
+                   ),
+                   childCount: HomeCubit.get(context).homeModel.length,
+                 ),
+                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                     crossAxisCount: 2,
+                     crossAxisSpacing: 14.h, //vertical
+                     mainAxisSpacing: 16.w, //horizontal
+                     childAspectRatio: 159.w / 215.h //(width/height)
 
-                              children: [
-                                // width: 131.w,
-                                // height: 123.h,
-                                // NetworkImage(HomeCubit.get(context)
-                                //     .homeModel[index]
-                                //     .image),
-                                Expanded(
-                                  child: CachedNetworkImage(
-                                    imageUrl: HomeCubit.get(context)
-                                        .homeModel[index]
-                                        .image!,
-                                    placeholder: (context, url) =>
-                                        CircularProgressIndicator(),
-                                    errorWidget: (context, url, error) =>
-                                        Icon(Icons.error),
-                                    height: 123.h,
-                                    width: 131.w,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 4.h,
-                                ),
-                                CustomText(
-                                  text:HomeCubit.get(context)
-                                      .homeModel[index]
-                                      .title!.toLowerCase(),
-                                  fontSize: 14.sp,
-                                  color: AppColor.fontColor,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                SizedBox(
-                                  height: 4.h,
-                                ),
-                                CustomText(
-                                  text:
-                                      "\$${HomeCubit.get(context).homeModel[index].price.toString()}",
-                                  fontSize: 16.sp,
-                                  color: AppColor.importFontColor,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        childCount: HomeCubit.get(context).homeModel.length,
-                      ),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 24.h, //vertical
-                          mainAxisSpacing: 16.w, //horizontal
-                          childAspectRatio: 159.w / 215.h //(width/height)
-
-                          //vertical
-                          ),
-                    ),
-                  ),
-                  fallback: (context) => SliverToBoxAdapter(
-                      child: Center(child: CircularProgressIndicator())),
-                )
+                   //vertical
+                 ),
+               ), fallback: (context) => SliverToBoxAdapter(child: Center(child: CircularProgressIndicator())),)
               ],
             ),
           );

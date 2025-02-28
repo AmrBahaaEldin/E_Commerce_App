@@ -1,4 +1,6 @@
 import 'package:e_commerce_app/core/constants/bloc_observer.dart';
+import 'package:e_commerce_app/core/db/cache/cache.dart';
+import 'package:e_commerce_app/core/db/db_local/db_local_helper.dart';
 import 'package:e_commerce_app/core/network/dio_helper.dart';
 import 'package:e_commerce_app/core/network/new_api.dart';
 import 'package:e_commerce_app/features/cart/presentation/cart_screen.dart';
@@ -22,10 +24,13 @@ import 'features/privacy/presentation/widget/privcy_screen.dart';
 
 
 
-void main() {
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
+ await SQLHelper.initDb();
   NewApi.init();
+  await CacheHelper.init();
   runApp(const ZaladaApp());
 }
 

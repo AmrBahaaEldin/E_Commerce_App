@@ -4,11 +4,13 @@ import 'dart:ffi';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:e_commerce_app/core/constants/app_color.dart';
 import 'package:e_commerce_app/core/network/dio_helper.dart';
 import 'package:e_commerce_app/core/network/endpoints.dart';
 import 'package:e_commerce_app/features/home/data/detail_product_model.dart';
 import 'package:e_commerce_app/features/home/data/home_model.dart';
 import 'package:e_commerce_app/features/home/logic/detail_product_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
@@ -63,4 +65,28 @@ class DetailProductCubit extends Cubit<DetailProductState> {
       emit(DetailProductError(error: e.toString()));
     }
   }
+bool isChange =false;
+  Color colorG=Colors.white;
+  Color colorB=Colors.white;
+  Color colorL=Colors.white;
+
+
+  void geryColor(){
+    isChange = !isChange;
+   colorG =isChange? Colors.grey : Colors.white;
+    emit(GreyColorState());
+  }
+  void brownColor(){
+    isChange = !isChange;
+    colorB =isChange? Colors.brown.shade100 : Colors.white;
+    emit(BrownColorState());
+  }
+
+  void lowGeryColor(){
+    isChange = !isChange;
+    colorL =isChange? Colors.grey.shade200 : Colors.white;
+    emit(LowGreyColorState());
+  }
+
+
 }
