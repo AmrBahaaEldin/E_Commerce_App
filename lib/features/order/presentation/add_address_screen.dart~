@@ -75,35 +75,33 @@ class AddAddressScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 30.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(AppImage.mapAddress, width: 335.w, height: 378.h),
-              SizedBox(height: 24.h,),
-              CustomText(
-                  text: "Select your location from the map",
-                  fontSize: 18.sp,
-                  color: AppColor.fontColor,
-                  fontWeight: FontWeight.w600),
-              CustomText(
-                  text:
-                      "Move the pin on the map to find your location and select the delivery address",
-                  fontSize: 14.sp,
-                  color: AppColor.subFontColor,
-                  fontWeight: FontWeight.w400),
-              SizedBox(height: 16.h,),
-              CustomTextField(
-                suffixIcon:Icon(CupertinoIcons.location_solid),
-                  labelText: "Address Detail",
-                  keyboardType: TextInputType.text,
-                  controller: mapController),
-              SizedBox(height: 24.h,),
-              CustomTextButton(label: "Confirm Address"),
-            ],
-          ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 30.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(AppImage.mapAddress, width: 335.w, height: 378.h),
+            SizedBox(height: 24.h,),
+            CustomText(
+                text: "Select your location from the map",
+                fontSize: 18.sp,
+                color: AppColor.fontColor,
+                fontWeight: FontWeight.w600),
+            CustomText(
+                text:
+                    "Move the pin on the map to find your location and select the delivery address",
+                fontSize: 14.sp,
+                color: AppColor.subFontColor,
+                fontWeight: FontWeight.w400),
+            SizedBox(height: 16.h,),
+            CustomTextField(
+              suffixIcon:Icon(CupertinoIcons.location_solid),
+                labelText: "Address Detail",
+                keyboardType: TextInputType.text,
+                controller: mapController),
+            SizedBox(height: 24.h,),
+            CustomTextButton(label: "Confirm Address"),
+          ],
         ),
       ),
     );

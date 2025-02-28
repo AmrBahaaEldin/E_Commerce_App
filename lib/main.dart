@@ -51,7 +51,7 @@ class ZaladaApp extends StatelessWidget {
       splitScreenMode: false,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
+        home: LayoutScreen(),
       ),
 
 

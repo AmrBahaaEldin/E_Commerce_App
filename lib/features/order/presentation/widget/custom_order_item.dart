@@ -1,12 +1,15 @@
 import 'package:e_commerce_app/core/constants/app_color.dart';
 import 'package:e_commerce_app/core/constants/app_image.dart';
 import 'package:e_commerce_app/core/widgets/custom_text.dart';
+import 'package:e_commerce_app/features/cart/model/card%20_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomOrderItem extends StatelessWidget {
+
   const CustomOrderItem({
+
     super.key,
   });
 
@@ -35,7 +38,7 @@ class CustomOrderItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
-                  text: "Macbook Pro 15” 2019 - Intel core i7 - Grey",
+                  text: "Apple Watch Series 7",
                   fontSize: 14.sp,
                   color: AppColor.fontColor,
                   fontWeight: FontWeight.w600),

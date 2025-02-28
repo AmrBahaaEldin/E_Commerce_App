@@ -100,7 +100,7 @@ class CartScreen extends StatelessWidget {
                               },
                             )).then((value){
                            if (value==true){
-                             context.read<CartCubit>().getCartData();
+                             
                            }
                         });
                       },

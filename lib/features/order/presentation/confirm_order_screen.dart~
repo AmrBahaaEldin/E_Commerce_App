@@ -422,7 +422,7 @@ class ConfirmOrderScreen extends StatelessWidget {
                         topRight: Radius.circular(24.r),
                       ),
                     ),
-                    child: CustomTextButton(label: 'Pay \$ ${context.read<CartCubit>().totalPriceWithShipping}')),
+                    child: CustomTextButton(label: "Pay \$1248")),
               ],
             ),
           );

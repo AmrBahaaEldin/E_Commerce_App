@@ -58,49 +58,45 @@ class DetailProductScreen extends StatelessWidget {
               ),
               Spacer(),
               BlocBuilder<DetailProductCubit, DetailProductState>(
-  builder: (context, state) {
-    return GestureDetector(
-                onTap: () {
-                  try {
-                    var data = DetailProductCubit.get(context)
-                        .detailProductModel;
-                    SQLHelper.add1(
-                        data!.id.toString(),
-                        data.title!,
-                        data.image!,
-                        data.rating!.count!,
-                        data.price!);
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (contextc) {
-                        return  WishListScreen();
-                      },
-                    ));
-                  } catch (e) {
-                    print(
-                        "_______________${e.toString()}___________________________");
-                  }
+                builder: (context, state) {
+                  return GestureDetector(
+                    onTap: () {
+                      try {
+                        var data =
+                            DetailProductCubit.get(context).detailProductModel;
+                        SQLHelper.add1(data!.id.toString(), data.title!,
+                            data.image!, data.rating!.count!, data.price!);
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (contextc) {
+                            return WishListScreen();
+                          },
+                        ));
+                      } catch (e) {
+                        print(
+                            "_______________${e.toString()}___________________________");
+                      }
+                    },
+                    child: Container(
+                        height: 44.h,
+                        width: 44.h,
+                        padding: EdgeInsets.symmetric(
+                            vertical: 12.h, horizontal: 12.w),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(34.r),
+                              bottomRight: Radius.circular(34.r),
+                              topLeft: Radius.circular(34.r),
+                              topRight: Radius.circular(34.r),
+                            ),
+                            border: Border.all(
+                                color: Colors.grey.shade300, width: 1.w)),
+                        child: Icon(
+                          CupertinoIcons.heart,
+                          size: 18.sp,
+                        )),
+                  );
                 },
-                child: Container(
-                    height: 44.h,
-                    width: 44.h,
-                    padding:
-                        EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(34.r),
-                          bottomRight: Radius.circular(34.r),
-                          topLeft: Radius.circular(34.r),
-                          topRight: Radius.circular(34.r),
-                        ),
-                        border: Border.all(
-                            color: Colors.grey.shade300, width: 1.w)),
-                    child: Icon(
-                      CupertinoIcons.heart,
-                      size: 18.sp,
-                    )),
-              );
-  },
-),
+              ),
             ],
           ),
           automaticallyImplyLeading: false,
@@ -400,7 +396,15 @@ class DetailProductScreen extends StatelessWidget {
                                         Navigator.push(context,
                                             MaterialPageRoute(
                                           builder: (context) {
-                                            return ConfirmOrderScreen();
+                                            try {
+                                              var data = DetailProductCubit.get(
+                                                      context)
+                                                  .detailProductModel;
+                                              return ConfirmOrderScreen();
+                                            } catch (e) {
+                                              print(
+                                                  "_______________${e.toString()}___________________________");
+                                            }
                                           },
                                         ));
                                       },
