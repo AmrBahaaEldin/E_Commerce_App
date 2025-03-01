@@ -151,7 +151,7 @@ class ProfileScreen extends StatelessWidget {
                               Positioned(
                                 bottom: 0,
                                 child: Container(
-                                  margin: EdgeInsets.only(left: 40.w, right: 40.w),
+                                  margin: EdgeInsets.only(left: 15.w, right: 15.w),
 
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(

@@ -13,6 +13,7 @@ class CartCubit extends Cubit<CartState> {
   List<CartModel> products = [];
   double totalPrice = 0;
   double totalPriceWithShipping = 0;
+  int totalQuantity = 1;
 
 
   Future<void> getCartData() async {
@@ -49,6 +50,7 @@ class CartCubit extends Cubit<CartState> {
   Future<void> incrementProductQuantity(String id, int index) async {
     // emit(CartLoading());
     try {
+
       products[index].quantity = products[index].quantity! + 1;
 
       await SQLHelper.update(

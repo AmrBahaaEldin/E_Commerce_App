@@ -284,9 +284,9 @@ class ConfirmOrderScreen extends StatelessWidget {
                                             ),
                                             Spacer(),
                                             CustomText(
-                                                text: products[index]
+                                                text:'x${products[index]
                                                     .quantity!
-                                                    .toString(),
+                                                    .toString()}',
                                                 fontSize: 14.sp,
                                                 color: AppColor.fontColor,
                                                 fontWeight: FontWeight.w400),

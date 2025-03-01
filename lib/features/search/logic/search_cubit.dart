@@ -11,6 +11,7 @@ class SearchCubit extends Cubit<SearchState> {
   SearchCubit() : super(SearchInitial());
   List<HomeModel> products = [];
   List<HomeModel> searchedProducts = [];
+  List<HomeModel> filteredProducts = [];
 
 
   void getProducts({String? searchQuery}) async {
@@ -46,5 +47,15 @@ class SearchCubit extends Cubit<SearchState> {
         .toList();
     emit(SearchSuccess(searchedProducts: searchedProducts));
   }
+  void filterProductsByPrice(double minPrice, double maxPrice) {
+    emit(SearchLoading());
+
+    filteredProducts = searchedProducts.where((product) {
+      return product.price! >= minPrice && product.price! <= maxPrice;
+    }).toList();
+
+    emit(SearchSuccess(searchedProducts: filteredProducts));
+  }
 }
+
 

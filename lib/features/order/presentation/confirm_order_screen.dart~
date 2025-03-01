@@ -11,6 +11,7 @@ import 'package:e_commerce_app/features/cart/model/card%20_model.dart';
 import 'package:e_commerce_app/features/cart/presentation/cart_screen.dart';
 import 'package:e_commerce_app/features/home/logic/detail_product_cubit.dart';
 import 'package:e_commerce_app/features/order/logic/order_cubit.dart';
+import 'package:e_commerce_app/features/order/presentation/order_success.dart';
 import 'package:e_commerce_app/features/order/presentation/select_address_screen.dart';
 import 'package:e_commerce_app/features/order/presentation/widget/custom_order_item.dart';
 import 'package:e_commerce_app/features/order/presentation/widget/custom_shipping_item.dart';
@@ -446,7 +447,7 @@ class ConfirmOrderScreen extends StatelessWidget {
                                 return BackdropFilter(
                                     filter:
                                         ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                                    child:OrderS(););
+                                    child:OrderSuccessScreen());
                               },
                             ),
                         label:
