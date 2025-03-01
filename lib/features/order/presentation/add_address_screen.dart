@@ -3,6 +3,7 @@ import 'package:e_commerce_app/core/constants/app_image.dart';
 import 'package:e_commerce_app/core/widgets/custom_text.dart';
 import 'package:e_commerce_app/core/widgets/custom_text_button.dart';
 import 'package:e_commerce_app/core/widgets/custom_text_field.dart';
+import 'package:e_commerce_app/features/order/presentation/confirm_order_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -101,7 +102,12 @@ class AddAddressScreen extends StatelessWidget {
                   keyboardType: TextInputType.text,
                   controller: mapController),
               SizedBox(height: 24.h,),
-              CustomTextButton(label: "Confirm Address"),
+              CustomTextButton(onTap: () {
+                return Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ConfirmOrderScreen();
+                },));
+              },
+                  label: "Confirm Address"),
             ],
           ),
         ),

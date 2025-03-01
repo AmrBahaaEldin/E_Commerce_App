@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/core/constants/app_color.dart';
 import 'package:e_commerce_app/core/constants/app_image.dart';
 import 'package:e_commerce_app/core/widgets/custom_text.dart';
+import 'package:e_commerce_app/features/order/presentation/select_payment_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,7 +42,11 @@ class PaymentMethod extends StatelessWidget {
           ),
           Spacer(),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,MaterialPageRoute(builder: (context) {
+                return SelectPaymentScreen();
+              },));
+            },
             icon: Icon(Icons.arrow_forward_ios),
           ),
 

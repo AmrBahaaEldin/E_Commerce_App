@@ -9,8 +9,8 @@ import '../../../core/constants/app_color.dart';
 import '../../../core/widgets/custom_text_button.dart';
 
 
-class OrderSuccess extends StatelessWidget {
-  const OrderSuccess({super.key});
+class OrderSuccessScreen extends StatelessWidget {
+  const OrderSuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

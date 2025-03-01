@@ -173,6 +173,7 @@ class RegisterScreen extends StatelessWidget {
                             registerCubit.passwordController.text.trim(),
                             registerCubit.phoneController.text.trim(),
                           );
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen(),), (route) => false,);
 
                         }
                       },), fallback:(context) =>  Center(child: CircularProgressIndicator())),

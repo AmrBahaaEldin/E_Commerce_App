@@ -175,7 +175,7 @@ class RegisterScreen extends StatelessWidget {
                           );
 
                         }
-                      },), fallback:(context) =>  CircularProgressIndicator()),
+                      },), fallback:(context) =>  Center(child: CircularProgressIndicator())),
 
                       SizedBox(height: 24.h),
                       CustomLineContinous(),

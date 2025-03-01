@@ -140,8 +140,12 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding:  EdgeInsets.only(left: 20.w,top: 10.h),
+
       child: GridView.builder(itemCount: CartCubit.get(context).products.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
+        shrinkWrap: true,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio:   159.h /215.w,
+            crossAxisCount: 2,
           crossAxisSpacing: 16.h,
           mainAxisSpacing: 20.h
         ), itemBuilder: (context, index) {
@@ -169,6 +173,7 @@ class CartItem extends StatelessWidget {
                 //     .homeModel[index]
                 //     .image),
                 Expanded(
+                  
                   child: CachedNetworkImage(
                     imageUrl: CartCubit.get(context).products[index].image!,
                     placeholder: (context, url) =>

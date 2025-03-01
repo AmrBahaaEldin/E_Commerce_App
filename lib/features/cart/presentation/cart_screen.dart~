@@ -76,36 +76,38 @@ class CartScreen extends StatelessWidget {
     if (state is CartLoading ) {
       return const LoadingItem();
     } else if (CartCubit.get(context).products.isNotEmpty ||state is CartProductDeleted) {
-      return Column(
-        children: [
-          Expanded(child: CartItem()),
-          Container(
-              height: 112.h,
-              padding: EdgeInsets.only(
-                  left: 20.w, right: 20.w, top: 16.h, bottom: 40.h),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(24.r),
-                  topRight: Radius.circular(24.r),
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            Expanded(child: CartItem()),
+            Container(
+                height: 112.h,
+                padding: EdgeInsets.only(
+                    left: 20.w, right: 20.w, top: 16.h, bottom: 40.h),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24.r),
+                    topRight: Radius.circular(24.r),
+                  ),
                 ),
-              ),
-              child: Expanded(
-                  child: CustomTextButton(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return ConfirmOrderScreen();
-                              },
-                            )).then((value){
-                           if (value==true){
-                             
-                           }
-                        });
-                      },
-                      label: "Checkout"))),
-        ],
+                child: Expanded(
+                    child: CustomTextButton(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return ConfirmOrderScreen();
+                                },
+                              )).then((value){
+                             if (value==true){
+                               context.read<CartCubit>().getCartData();
+                             }
+                          });
+                        },
+                        label: "Checkout"))),
+          ],
+        ),
       );
     } else if (CartCubit.get(context).products.isEmpty ) { {
       return CartEmpty();
@@ -140,8 +142,13 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding:  EdgeInsets.only(left: 20.w,top: 10.h),
+
       child: GridView.builder(itemCount: CartCubit.get(context).products.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio:   159.h /215.w,
+            crossAxisCount: 2,
           crossAxisSpacing: 16.h,
           mainAxisSpacing: 20.h
         ), itemBuilder: (context, index) {
@@ -169,6 +176,7 @@ class CartItem extends StatelessWidget {
                 //     .homeModel[index]
                 //     .image),
                 Expanded(
+                  
                   child: CachedNetworkImage(
                     imageUrl: CartCubit.get(context).products[index].image!,
                     placeholder: (context, url) =>

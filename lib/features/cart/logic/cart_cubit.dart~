@@ -91,7 +91,7 @@ class CartCubit extends Cubit<CartState> {
     for (var product in products) {
       totalPrice += product.price! * product.quantity!;
     }
-    totalPriceWithShipping = totalPrice + 10.53;
+    totalPriceWithShipping = totalPrice + 4.53;
   }
 
 }

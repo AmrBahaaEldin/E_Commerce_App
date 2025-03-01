@@ -14,6 +14,7 @@ class CartCubit extends Cubit<CartState> {
   double totalPrice = 0;
   double totalPriceWithShipping = 0;
 
+
   Future<void> getCartData() async {
     emit(CartLoading());
     try {
